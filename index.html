@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Congreso ECP 2026</title>
+     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family:'Genty'; src:url('genty-regular.ttf') format('truetype'); }
+
+        :root {
+            --pink:   #ef5499;
+            --orange: #ff9800;
+            --aqua:   #00acc1;
+            --red:    #8b0000;
+            --cream:  #fffaf5;
+            --dark:   #1a1014;
+            --text:   #2c2030;
+            --muted:  #9b8fa0;
+            --border: #f0e8ee;
+        }
+
+        *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+        /* NAV */
+        nav {
+            position:fixed; top:16px; left:50%; transform:translateX(-50%);
+            z-index:1000; background:rgba(255,255,255,0.9); backdrop-filter:blur(20px);
+            border:1px solid var(--border); border-radius:100px; padding:10px 26px;
+            display:flex; align-items:center; gap:24px;
+            box-shadow:0 8px 32px rgba(239,84,153,0.12); transition:all 0.3s; white-space:nowrap;
+        }
+        .nav-logo { font-family:'Genty',cursive; font-size:0.92rem; color:var(--pink); }
+        nav a { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text); text-decoration:none; transition:color 0.2s; }
+        nav a:hover { color:var(--pink); }
+        .nav-btn { background:var(--pink)!important; color:#fff!important; padding:7px 18px!important; border-radius:100px; }
+        .nav-btn:hover { background:#d4407f!important; }
+        @media(max-width:768px){ nav{padding:9px 14px;gap:10px;} nav a:not(.nav-logo):not(.nav-btn){display:none;} }
+
+        /* HERO */
+        .hero {
+            min-height:100vh; position:relative;
+            display:flex; flex-direction:column; align-items:center; justify-content:center;
+            text-align:center; overflow:hidden; padding:120px 20px 80px;
+            background:linear-gradient(rgba(26,8,20,0.55),rgba(26,8,20,0.72)),url('./img/portada.jpeg') center/cover no-repeat;
+        }
+        .hero-content { position:relative; z-index:10; display:flex; flex-direction:column; align-items:center; }
+        .logo-badge {
+            width:160px; height:160px; background:#fff; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            border:5px solid var(--orange);
+            box-shadow:0 0 0 12px rgba(255,152,0,0.1), 0 20px 60px rgba(0,0,0,0.3);
+            overflow:hidden; padding:22px; margin-bottom:24px;
+            animation:scaleIn 0.9s 0.3s both;
+        }
+        .logo-badge img { width:100%; height:100%; object-fit:contain; }
+        @keyframes scaleIn  { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeUp   { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+        .hero-eyebrow { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:var(--orange); margin-bottom:8px; animation:fadeDown 0.8s 0.5s both; }
+        .hero-title { font-family:'Genty',cursive; font-size:clamp(2.5rem,7vw,4.5rem); color:var(--pink); line-height:1.1; display:block; animation:fadeDown 0.9s 0.65s both; text-shadow:0 4px 30px rgba(239,84,153,0.4); max-width: 900px; }
+        .hero-subtitle { font-family:'Cormorant Garamond',serif; font-size:clamp(1.2rem,3vw,1.8rem); font-weight:700; font-style:italic; color:var(--orange); margin-top:12px; animation:fadeUp 0.9s 0.8s both; }
+        .hero-meta { display:flex; align-items:center; gap:16px; margin-top:20px; flex-wrap:wrap; justify-content:center; animation:fadeUp 0.9s 0.95s both; }
+        .hero-meta-item { display:flex; align-items:center; gap:6px; color:rgba(255,255,255,0.75); font-size:0.8rem; font-weight:500; }
+        .dot { width:5px; height:5px; border-radius:50%; background:var(--aqua); flex-shrink:0; }
+        .hero-btns { display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; justify-content:center; animation:fadeUp 0.9s 1.05s both; }
+
+        .btn { padding:14px 36px; border-radius:100px; font-family:'DM Sans',sans-serif; font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border:none; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s, background 0.2s; display:inline-flex; align-items:center; gap:8px; }
+        .btn:hover { transform:translateY(-2px); }
+        .btn-pink  { background:var(--pink);  color:#fff; box-shadow:0 6px 20px rgba(239,84,153,0.4); }
+        .btn-pink:hover  { background:#d4407f; }
+        .btn-ghost { background:rgba(255,255,255,0.14); backdrop-filter:blur(10px); color:#fff; border:2px solid rgba(255,255,255,0.35); }
+        .btn-ghost:hover { background:rgba(255,255,255,0.22); }
+        .btn-orange { background:var(--orange); color:#fff; box-shadow:0 6px 20px rgba(255,152,0,0.35); }
+        .btn-orange:hover { background:#e68a00; }
+        .btn-aqua   { background:var(--aqua); color:#fff; box-shadow:0 6px 20px rgba(0,172,193,0.3); }
+        .btn-aqua:hover { background:#0097a7; }
+        .btn-outline-pink { background:transparent; color:var(--pink); border:2px solid var(--pink); }
+        .btn-outline-pink:hover { background:var(--pink); color:#fff; }
+
+        .scroll-hint { position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:10; display:flex; flex-direction:column; align-items:center; gap:5px; animation:fadeUp 1s 1.4s both; }
+        .scroll-hint span { font-size:0.58rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+        .scroll-arrow { width:18px; height:18px; border-right:2px solid rgba(255,255,255,0.35); border-bottom:2px solid rgba(255,255,255,0.35); transform:rotate(45deg); animation:bounce 1.5s infinite; }
+        @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+        /* SECTIONS SHARED */
+        section { width:100%; padding:100px 24px; }
+        .section-label { font-size:0.63rem; font-weight:900; text-transform:uppercase; letter-spacing:3px; color:var(--muted); margin-bottom:10px; display:block; }
+        .section-title { font-family:'Genty',cursive; font-size:clamp(2rem,5vw,3rem); line-height:1.05; margin-bottom:12px; }
+        .section-desc  { font-size:0.93rem; color:var(--muted); max-width:520px; line-height:1.7; }
+        .section-header { margin-bottom:56px; }
+        .centered { text-align:center; }
+        .centered .section-desc { margin:0 auto; }
+
+        /* AGENDA — Poster Cards */
+        .agenda-section { background:#fff; }
+        .agenda-section .section-label { color:var(--muted); }
+        .agenda-section .section-title { color:var(--red); }
+        .agenda-section .section-desc  { color:var(--muted); }
+
+        .agenda-grid {
+            max-width:1200px; margin:0 auto;
+            display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+        }
+
+        .agenda-card {
+            border-radius:20px; overflow:hidden; position:relative; cursor:pointer;
+            transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
+            box-shadow:0 8px 32px rgba(0,0,0,0.18);
+            aspect-ratio:3/4; background:#0f0009;
+        }
+        .agenda-card:hover { transform:translateY(-8px) scale(1.02); box-shadow:0 24px 60px rgba(0,0,0,0.28); }
+
+        .card-bg {
+            position:absolute; inset:0;
+            background-size:cover; background-position:center top;
+            transition:transform 0.5s ease;
+        }
+        .agenda-card:hover .card-bg { transform:scale(1.06); }
+
+        .card-overlay {
+            position:absolute; inset:0;
+            background:linear-gradient(to bottom,rgba(10,0,8,0) 0%,rgba(10,0,8,0.1) 30%,rgba(10,0,8,0.65) 58%,rgba(10,0,8,0.97) 100%);
+        }
+        .card-accent { position:absolute; top:0; left:0; right:0; height:5px; border-radius:20px 20px 0 0; }
+        .card-body { position:absolute; bottom:0; left:0; right:0; padding:0 20px 20px; }
+
+        .event-tag {
+            display:inline-flex; align-items:center;
+            font-size:0.57rem; font-weight:900; text-transform:uppercase; letter-spacing:1.8px;
+            padding:4px 12px; border-radius:100px; margin-bottom:8px;
+        }
+        .event-title { font-size:0.93rem; font-weight:800; color:#fff; line-height:1.35; margin-bottom:10px; }
+        .event-speaker {
+            font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:700;
+            font-size:0.85rem; border-top:1px solid rgba(255,255,255,0.14); padding-top:9px;
+        }
+        .event-speaker small { font-style:normal; font-family:'DM Sans',sans-serif; font-size:0.68rem; color:rgba(255,255,255,0.38); display:block; margin-top:2px; }
+
+        .ac-aqua .card-accent { background:var(--aqua); }
+        .ac-aqua .event-tag { color:var(--aqua); background:rgba(0,172,193,0.2); border:1px solid rgba(0,172,193,0.35); }
+        .ac-aqua .event-speaker { color:var(--aqua); }
+        .ac-pink .card-accent { background:var(--pink); }
+        .ac-pink .event-tag { color:var(--pink); background:rgba(239,84,153,0.2); border:1px solid rgba(239,84,153,0.35); }
+        .ac-pink .event-speaker { color:var(--pink); }
+        .ac-orange .card-accent { background:var(--orange); }
+        .ac-orange .event-tag { color:var(--orange); background:rgba(255,152,0,0.2); border:1px solid rgba(255,152,0,0.35); }
+        .ac-orange .event-speaker { color:var(--orange); }
+
+        .podcast-badge { display:inline-flex; align-items:center; gap:6px; background:var(--orange); color:#fff; font-size:0.6rem; font-weight:900; text-transform:uppercase; letter-spacing:1.5px; padding:4px 14px; border-radius:100px; margin-bottom:10px; }
+
+        @media(max-width:900px){ .agenda-grid { grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:600px){ .agenda-grid { grid-template-columns:1fr; } }
+
+        /* TICKETS */
+        .tickets-section { background:var(--cream); }
+        .ticket-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:22px; max-width:1060px; margin:0 auto; align-items:center; }
+        .ticket { background:#fff; border-radius:34px; border:1px solid var(--border); padding:40px 30px; text-align:center; display:flex; flex-direction:column; transition:transform 0.3s, box-shadow 0.3s; position:relative; overflow:hidden; }
+        .ticket::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:55%; height:4px; border-radius:0 0 4px 4px; background:var(--orange); }
+        .ticket:hover { transform:translateY(-4px); box-shadow:0 18px 48px rgba(0,0,0,0.07); }
+        .ticket.featured { background:var(--dark); border:none; transform:scale(1.04); box-shadow:0 28px 56px rgba(26,8,20,0.28); }
+        .ticket.featured::before { background:var(--pink); width:75%; }
+        .ticket.featured:hover { transform:scale(1.04) translateY(-4px); }
+        .ticket-badge { font-size:0.6rem; font-weight:900; text-transform:uppercase; letter-spacing:2px; padding:4px 14px; border-radius:100px; background:rgba(255,152,0,0.1); color:var(--orange); display:inline-block; margin-bottom:16px; }
+        .ticket.featured .ticket-badge { background:rgba(239,84,153,0.18); color:var(--pink); }
+        .ticket-name { font-size:1.4rem; font-weight:900; margin-bottom:8px; text-transform:uppercase; }
+        .ticket.featured .ticket-name { color:#fff; }
+        .price { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:700; color:var(--pink); margin-bottom:26px; line-height:1; }
+        .price sup { font-size:1.2rem; vertical-align:top; margin-top:8px; }
+        .ticket.featured .price { color:var(--orange); }
+        .feat-list { list-style:none; text-align:left; margin-bottom:28px; flex-grow:1; }
+        .feat-list li { padding:8px 0; border-bottom:1px solid var(--border); font-size:0.85rem; display:flex; align-items:flex-start; gap:9px; line-height:1.4; }
+        .ticket.featured .feat-list li { border-bottom-color:rgba(255,255,255,0.07); color:rgba(255,255,255,0.82); }
+        .feat-list li::before { content:"✦"; color:var(--orange); font-size:0.65rem; margin-top:3px; flex-shrink:0; }
+
+        /* SPONSORS */
+        .sponsors-section { background:#fff; }
+        .sponsor-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(275px,1fr)); gap:20px; max-width:980px; margin:0 auto; }
+        .sponsor-card { background:var(--cream); border-radius:24px; border:1px solid var(--border); padding:30px 22px; text-align:center; transition:transform 0.3s, box-shadow 0.3s; }
+        .sponsor-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.07); }
+        .sponsor-tier { font-size:0.62rem; font-weight:900; text-transform:uppercase; letter-spacing:2px; padding:4px 14px; border-radius:100px; display:inline-block; margin-bottom:12px; }
+        .tier-pro  .sponsor-tier { background:rgba(255,152,0,0.1); color:var(--orange); }
+        .tier-vip  .sponsor-tier { background:rgba(239,84,153,0.1); color:var(--pink); }
+        .tier-premium .sponsor-tier { background:rgba(0,172,193,0.1); color:var(--aqua); }
+        .sponsor-price { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; margin-bottom:18px; }
+        .tier-pro .sponsor-price { color:var(--orange); }
+        .tier-vip .sponsor-price { color:var(--pink); }
+        .tier-premium .sponsor-price { color:var(--aqua); }
+        .sponsor-feat { list-style:none; text-align:left; margin-bottom:22px; }
+        .sponsor-feat li { font-size:0.8rem; padding:7px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:flex-start; line-height:1.4; }
+        .sponsor-feat li::before { content:"→"; color:var(--pink); font-weight:900; flex-shrink:0; }
+
+        /* REELS */
+        .reels-section { background:var(--cream); }
+        .reels-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; max-width:1200px; margin:0 auto; }
+        .reel-card { background:#fff; border-radius:26px; border:1px solid var(--border); border-top:8px solid var(--aqua); overflow:hidden; transition:transform 0.3s, box-shadow 0.3s; display:flex; flex-direction:column; }
+        .reel-card:nth-child(even) { border-top-color:var(--pink); }
+        .reel-card:nth-child(3n) { border-top-color:var(--orange); }
+        .reel-card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.08); }
+        .reel-header { padding:14px 18px 6px; display:flex; align-items:center; gap:10px; }
+        .reel-tag { font-size:0.58rem; font-weight:900; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); }
+        .reel-year { margin-left:auto; background:var(--orange); color:#fff; font-size:0.68rem; font-weight:900; padding:3px 12px; border-radius:100px; }
+        .reel-card:nth-child(even) .reel-year { background:var(--pink); }
+        .reel-card:nth-child(3n) .reel-year { background:var(--aqua); }
+        .reel-title { font-weight:800; font-size:0.9rem; padding:0 18px 12px; color:var(--text); }
+        .reel-embed { background:#f5eef2; border-top:1px solid var(--border); position: relative; padding-bottom: 177%; height: 0; overflow: hidden; }
+        .reel-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:none; }
+
+        /* LOCATION */
+        .location-section { background:var(--dark); padding:90px 24px; text-align:center; }
+        .location-inner { max-width:680px; margin:0 auto; }
+        .location-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin:30px 0; }
+        .chip { display:flex; align-items:center; gap:9px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:100px; padding:11px 20px; color:rgba(255,255,255,0.78); font-size:0.85rem; font-weight:600; }
+
+        /* FOOTER */
+        footer { background:#fff; border-top:1px solid var(--border); padding:56px 24px 36px; }
+        .footer-inner { max-width:860px; margin:0 auto; display:flex; flex-wrap:wrap; gap:40px; justify-content:center; align-items:flex-start; }
+        .footer-logo { max-width:150px; }
+        .footer-contacts h4 { font-size:0.65rem; font-weight:900; text-transform:uppercase; letter-spacing:2px; color:var(--aqua); margin-bottom:12px; }
+        .contact-row { display:flex; align-items:center; gap:9px; text-decoration:none; color:var(--text); font-weight:700; font-size:0.95rem; margin-bottom:7px; transition:color 0.2s; }
+        .contact-row:hover { color:var(--pink); }
+        .wa-icon { width:19px; height:19px; }
+        .footer-tagline { width:100%; text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.95rem; color:var(--muted); margin-top:28px; padding-top:28px; border-top:1px solid var(--border); }
+
+        /* REVEAL */
+        .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .reveal-delay-1 { transition-delay:0.1s; }
+        .reveal-delay-2 { transition-delay:0.2s; }
+        .reveal-delay-3 { transition-delay:0.3s; }
+
+        @media(max-width:768px){
+            section { padding:70px 16px; }
+            .ticket.featured { transform:none; }
+            .ticket.featured:hover { transform:translateY(-4px); }
+            .reels-grid,.sponsor-grid,.ticket-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <span class="nav-logo">ECP 2026</span>
+    <a href="#programa">Programa</a>
+    <a href="#tickets">Boletas</a>
+    <a href="#patrocinadores">Aliados</a>
+    <a href="#reels">Reels</a>
+    <a href="#tickets" class="nav-btn">Reservar ✦</a>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <div class="logo-badge"><img src="./img/logo_new.png" alt="Empresarias Creativas"></div>
+        <p class="hero-eyebrow">Congreso ECP · Vol. 4.0</p>
+        <span class="hero-title">¿Estás list@ para descubrir las llaves de un negocio que prospera?</span>
+        <span class="hero-subtitle">Vuelve el evento que transforma tu visión empresarial</span>
+        <div class="hero-meta">
+            <div class="hero-meta-item"><span class="dot"></span>Salón Gobernación Provincial SC</div>
+            <div class="hero-meta-item"><span class="dot"></span>+300 Empresarias</div>
+            <div class="hero-meta-item"><span class="dot"></span>6 Horas de contenido</div>
+        </div>
+        <div class="hero-btns">
+            <a href="#tickets" class="btn btn-pink">Reservar Ahora ✦</a>
+            <button class="btn btn-ghost" onclick="shareSite()">Compartir ✨</button>
+        </div>
+    </div>
+    <div class="scroll-hint"><span>Explorar</span><div class="scroll-arrow"></div></div>
+</header>
+
+<section class="agenda-section" id="programa">
+    <div class="section-header centered reveal">
+        <span class="section-label">Programa del Evento · 2:00 – 8:00 PM</span>
+        <h2 class="section-title">Conferencias & Paneles</h2>
+        <p class="section-desc">Un día completo de aprendizaje, conexión y crecimiento para tu negocio</p>
+    </div>
+
+    <div class="agenda-grid">
+        <div class="agenda-card ac-pink reveal">
+            <div class="card-bg" style="background-image:url('./img/1.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Conferencia</span>
+                <h3 class="event-title">Activa la creatividad en ti para prosperar tu negocio</h3>
+                <p class="event-speaker">Mayuri Hidalgo<small>CEO Equipo Creativo · Fundadora ECP</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-orange reveal reveal-delay-1">
+            <div class="card-bg" style="background-image:url('./img/9.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Conferencia</span>
+                <h3 class="event-title">Finanzas con propósito para prosperar tu negocio</h3>
+                <p class="event-speaker">Andry Quezada<small>Gerente General Andrea Hair Center · Fundadora Unibella</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-aqua reveal reveal-delay-2">
+            <div class="card-bg" style="background-image:url('./img/12.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Conferencia</span>
+                <h3 class="event-title">El ADN de una marca que Prospera</h3>
+                <p class="event-speaker">Jenn1ffer Arias<small>Speaker, productora y mentora de marcas</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-pink reveal">
+            <div class="card-bg" style="background-image:url('./img/3.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">⚡ Mentoría en Vivo</span>
+                <h3 class="event-title">Optimizando tu negocio para prosperar y expandir tu mercado</h3>
+                <p class="event-speaker">Igor Casanova<small>Fundador Optimízate · +300 empresas transformadas</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-aqua reveal reveal-delay-1">
+            <div class="card-bg" style="background-image:url('./img/10.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Panel</span>
+                <h3 class="event-title">Dios, familia y negocio: Estrategias para prosperar en pareja</h3>
+                <p class="event-speaker">Isabel & Lewis Martínez · Sugeidy & Lewdin de Jesús<small>Tienda Bebitos · Suglex</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-orange reveal reveal-delay-2">
+            <div class="card-bg" style="background-image:url('./img/4.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Panel</span>
+                <h3 class="event-title">Negocios con propósito</h3>
+                <p class="event-speaker">Marielis Ramos & James Oneal Moya<small>Hair Plus · 28 países</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-pink reveal">
+            <div class="card-bg" style="background-image:url('./img/6.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Panel</span>
+                <h3 class="event-title">Gestión de crisis: Cómo convertir una crisis en oportunidad</h3>
+                <p class="event-speaker">Mileyka Brugal · Amarilys Durán · Fernando Núñez · Rosanna Nin</p>
+            </div>
+        </div>
+        <div class="agenda-card ac-aqua reveal reveal-delay-1">
+            <div class="card-bg" style="background-image:url('./img/11.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Panel</span>
+                <h3 class="event-title">El Marketing Digital y la IA: Herramientas para prosperar</h3>
+                <p class="event-speaker">Stephany Barrientos · Stephany Matias · Luis Sosa<small>Expertos MKT Digital e Inteligencia Artificial</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-orange reveal reveal-delay-2">
+            <div class="card-bg" style="background-image:url('./img/5.png')"></div>
+            <div class="card-overlay"></div><div class="card-accent"></div>
+            <div class="card-body">
+                <span class="event-tag">Panel Emprendedores</span>
+                <h3 class="event-title">Emprendiendo para Prosperar: De la idea a la acción</h3>
+                <p class="event-speaker">Elías Bautista · Yakayra Toledo · Rigoberto Enmanuel<small>Lab. Emprendimiento CCPSC</small></p>
+            </div>
+        </div>
+        <div class="agenda-card ac-orange reveal" style="grid-column:2">
+            <div class="card-bg" style="background-image:url('./img/2.png'); background-position:center 22%;"></div>
+            <div class="card-overlay"></div>
+            <div class="card-accent" style="background:linear-gradient(90deg,var(--orange),var(--pink));"></div>
+            <div class="card-body">
+                <span class="podcast-badge">🎙 Podcast en Vivo · Cierre Especial</span>
+                <h3 class="event-title">La llave: Formar un equipo para prosperar tu negocio</h3>
+                <p class="event-speaker" style="color:var(--orange)">Roberto Musa & Ariel Montero<small style="color:rgba(255,255,255,0.4)">Bajo Cero Podcast · Meet & Greet + Firma de libros</small></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tickets-section" id="tickets">
+    <div class="section-header centered reveal">
+        <span class="section-label">Boletas · Sábado 28 de Marzo</span>
+        <h2 class="section-title" style="color:var(--red)">Niveles de Inversión</h2>
+        <p class="section-desc">Asegura tu lugar en el congreso más poderoso de empresarias en RD</p>
+    </div>
+    <div class="ticket-grid">
+        <div class="ticket reveal">
+            <span class="ticket-badge">Entrada</span>
+            <h3 class="ticket-name" style="color:var(--orange)">Creativa PRO</h3>
+            <div class="price" style="display: flex; align-items: baseline; justify-content: center; gap: 4px;">
+                <span style="font-size: 1.2rem; font-weight: 700;">RD$</span>
+                <span>2,500</span>
+            </div>
+            <ul class="feat-list">
+                <li>Conferencias y paneles</li>
+                <li>Kit Creativo PRO + Libreta</li>
+                <li>Certificado digital</li>
+                <li>Kit de patrocinadores</li>
+                <li>Regalos sorpresa</li>
+                <li>Experiencias de marcas</li>
+                <li><strong>1 Boleto para sorteo de premio</strong></li>
+            </ul>
+            <a href="https://buy.stripe.com/eVq7sK6UU4Audsz9Zx67S0s" class="btn btn-orange">Comprar PRO</a>
+        </div>
+
+        <div class="ticket featured reveal reveal-delay-1">
+            <span class="ticket-badge">⭐ Más Popular</span>
+            <h3 class="ticket-name" style="color:var(--pink)">Creativa VIP</h3>
+            <div class="price" style="display: flex; align-items: baseline; justify-content: center; gap: 4px;">
+                <span style="font-size: 1.2rem; font-weight: 700;">RD$</span>
+                <span>12,500</span>
+            </div>
+            <ul class="feat-list">
+                <li>Todo lo incluido en PRO</li>
+                <li>Kit Creativo VIP exclusivo</li>
+                <li><strong>Libro "El Método MUSA"</strong></li>
+                <li><strong>Meet & Greet con invitados</strong></li>
+                <li><strong>Firma de libros con Roberto Musa</strong></li>
+                <li><strong>2 Boletos para sorteo de premio</strong></li>
+            </ul>
+            <a href="https://buy.stripe.com/dRmbJ07YY5Ey74b4Fd67S0t" class="btn btn-pink">Comprar VIP</a>
+        </div>
+
+        <div class="ticket reveal reveal-delay-2">
+            <span class="ticket-badge" style="color:var(--aqua);background:rgba(0,172,193,0.1)">Special Guest</span>
+            <h3 class="ticket-name" style="color:var(--aqua)">Special Guest</h3>
+            <div class="price" style="display: flex; align-items: baseline; justify-content: center; gap: 4px; color:var(--aqua)">
+                <span style="font-size: 1.2rem; font-weight: 700;">RD$</span>
+                <span>25,000</span>
+            </div>
+            <ul class="feat-list">
+                <li>Todo lo incluido en VIP</li>
+                <li><strong>Logo en pantalla y backpanel</strong></li>
+                <li>Publicidad en Kit oficial</li>
+                <li><strong>3 Boletos para sorteo de premio</strong></li>
+            </ul>
+            <a href="https://buy.stripe.com/eVqcN4enm7MG88fgnV67S0u" class="btn btn-aqua">Consultar</a>
+        </div>
+    </div>
+</section>
+
+<section class="sponsors-section" id="patrocinadores">
+    <div class="section-header centered reveal">
+        <span class="section-label">Para marcas y empresas</span>
+        <h2 class="section-title" style="color:var(--red)">Paquetes para Aliados</h2>
+        <p class="section-desc">Tu marca también puede ser una llave. Visibilidad ante +300 empresarias y 100K en redes sociales.</p>
+    </div>
+    <div class="sponsor-grid">
+        <div class="sponsor-card tier-pro reveal">
+            <span class="sponsor-tier">PRO</span>
+            <div class="sponsor-price">RD$ 75,000</div>
+            <ul class="sponsor-feat">
+                <li>Logo en publicidad de redes sociales</li>
+                <li>Logo en backpanel de fotos del evento</li>
+                <li>1 Mención durante el evento</li>
+                <li>Espacio 1×1m en ExpoCreativa</li>
+                <li>Video en cobertura del evento</li>
+                <li>1 entrada Creativa PRO · 20% desc.</li>
+            </ul>
+            <a href="https://wa.me/18495179040" class="btn btn-outline-pink" style="font-size:0.76rem;padding:12px 28px">Consultar →</a>
+        </div>
+        <div class="sponsor-card tier-vip reveal reveal-delay-1">
+            <span class="sponsor-tier">VIP</span>
+            <div class="sponsor-price">RD$ 150,000</div>
+            <ul class="sponsor-feat">
+                <li>Logo en pantalla del evento</li>
+                <li>Logo en publicidad de redes sociales</li>
+                <li>Logo en backpanel de fotos</li>
+                <li>2 Menciones durante el evento</li>
+                <li>Espacio 1.5×1.5m en ExpoCreativa</li>
+                <li>Video en cobertura · 2 Packs Creativos</li>
+                <li>2 entradas PRO + 2 Gala · 20% desc.</li>
+            </ul>
+            <a href="https://wa.me/18495179040" class="btn btn-pink" style="font-size:0.76rem;padding:12px 28px">Consultar →</a>
+        </div>
+        <div class="sponsor-card tier-premium reveal reveal-delay-2">
+            <span class="sponsor-tier">PREMIUM</span>
+            <div class="sponsor-price">RD$ 250,000</div>
+            <ul class="sponsor-feat">
+                <li>Logo en pantalla del evento</li>
+                <li>Logo en toda la publicidad de RRSS</li>
+                <li><strong>Video del evento con tu marca (15 seg)</strong></li>
+                <li>Logo en backpanel · 3 Menciones</li>
+                <li>Espacio 1.5×1.5m + degustaciones</li>
+                <li>2 Packs Creativos · Logo en Panel</li>
+                <li>2 entradas VIP · 20% desc.</li>
+            </ul>
+            <a href="https://wa.me/18495179040" class="btn btn-aqua" style="font-size:0.76rem;padding:12px 28px">Consultar →</a>
+        </div>
+    </div>
+</section>
+
+<section class="reels-section" id="reels">
+    <div class="section-header centered reveal">
+        <span class="section-label">Momentos que inspiran</span>
+        <h2 class="section-title" style="color:var(--red)">Revive los Congresos</h2>
+        <p class="section-desc">Lo mejor de nuestras ediciones anteriores — Más que un evento, somos una comunidad que crece.</p>
+    </div>
+    <div class="reels-grid">
+        <div class="reel-card reveal">
+            <div class="reel-header">
+                <span class="reel-tag">Preparativos</span>
+                <span class="reel-year">2026</span>
+            </div>
+            <h3 class="reel-title">Lo que viene en camino</h3>
+            <div class="reel-embed">
+                <iframe src="https://www.instagram.com/reel/DGqVE6bp4wa/embed" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="reel-card reveal reveal-delay-1">
+            <div class="reel-header">
+                <span class="reel-tag">Highlights</span>
+                <span class="reel-year">2024</span>
+            </div>
+            <h3 class="reel-title">Experiencias inolvidables</h3>
+            <div class="reel-embed">
+                <iframe src="https://www.instagram.com/reel/C25pJIxJF95/embed" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="reel-card reveal reveal-delay-2">
+            <div class="reel-header">
+                <span class="reel-tag">Comunidad</span>
+                <span class="reel-year">2023</span>
+            </div>
+            <h3 class="reel-title">Conexión genuina</h3>
+            <div class="reel-embed">
+                <iframe src="https://www.instagram.com/reel/Cnc8s1HIQS8/embed" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="reel-card reveal reveal-delay-3">
+            <div class="reel-header">
+                <span class="reel-tag">Inclusión</span>
+                <span class="reel-year">2026</span>
+            </div>
+            <h3 class="reel-title">Aliados del éxito: Este año los hombres nos acompañan</h3>
+            <div class="reel-embed">
+                <iframe src="https://www.instagram.com/reel/DVJXx7oDqgN/embed" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="location-section">
+    <div class="location-inner reveal">
+        <h2 class="section-title" style="color:#fff">¿Dónde será?</h2>
+        <div class="location-chips">
+            <div class="chip">📍 Salón Gobernación Provincial, San Cristóbal</div>
+            <div class="chip">📅 28 de Marzo, 2026</div>
+            <div class="chip">🕒 2:00 PM - 8:00 PM</div>
+        </div>
+        <a href="#" target="_blank" class="btn btn-ghost">Cómo llegar 🗺️</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <img src="./img/logo_new.png" class="footer-logo" alt="ECP">
+        <div class="footer-contacts">
+            <h4>Hablemos</h4>
+            <a href="https://wa.me/18495179040" class="contact-row">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="wa-icon" alt="WA">
+                849-517-9040
+            </a>
+            <p style="font-size:0.8rem; color:var(--muted)">Sígannos en @empresariascreativasrd</p>
+        </div>
+        <p class="footer-tagline">Desarrollado con el don de la creatividad — Rafael Antonio Reyes © 2026</p>
+    </div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function shareSite() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Congreso ECP 2026',
+                url: window.location.href
+            });
+        } else {
+            alert('Enlace copiado al portapapeles ✨');
+        }
+    }
+</script>
+
+</body>
+</html>
