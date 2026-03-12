@@ -667,7 +667,7 @@
             <div class="chip">📅 28 de Marzo, 2026</div>
             <div class="chip">🕒 2:00 PM - 8:00 PM</div>
         </div>
-        <a href="#" target="_blank" class="btn btn-ghost">Cómo llegar 🗺️</a>
+        <a href="https://maps.app.goo.gl/WGC2apH3hDDSLrex5" target="_blank" class="btn btn-ghost">Cómo llegar 🗺️</a>
     </div>
 </section>
 
@@ -705,6 +705,29 @@
         <p class="footer-tagline">Desarrollado con el don de la creatividad — Rafael Antonio Reyes © 2026</p>
     </div>
 </footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/18495179040" target="_blank" aria-label="WhatsApp" style="
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    z-index:9999;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 6px 24px rgba(37,211,102,0.45);
+    transition:transform 0.2s, box-shadow 0.2s;
+" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 10px 32px rgba(37,211,102,0.55)'"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 6px 24px rgba(37,211,102,0.45)'">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#fff">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.862L.057 23.522a.75.75 0 0 0 .921.921l5.66-1.476A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.715 9.715 0 0 1-4.953-1.354l-.355-.212-3.658.953.974-3.56-.232-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+    </svg>
+</a>
 
 <script>
     const observer = new IntersectionObserver((entries) => {
