@@ -255,6 +255,68 @@
             .ticket.featured:hover { transform:translateY(-4px); }
             .reels-grid,.sponsor-grid,.ticket-grid { grid-template-columns:1fr; }
         }
+
+        /* Estilos específicos para la sección Fundadora */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+}
+.about-image-container {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 20px 20px 0 var(--orange);
+}
+.about-image-container img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s;
+}
+.about-image-container:hover img {
+    transform: scale(1.05);
+}
+.about-text-content {
+    text-align: left;
+}
+.about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--pink);
+    margin-bottom: 24px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+.about-bio {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+.about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--pink);
+}
+.highlight-icon { width: 24px; height: 24px; }
+
+@media(max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-image-container { box-shadow: 15px 15px 0 var(--orange); }
+}
     </style>
 </head>
 <body>
@@ -487,7 +549,45 @@
         </div>
     </div>
 </section>
+<section class="about-section" id="fundadora" style="background: #fff;">
+    <div class="about-grid">
+        <div class="about-image-container reveal">
+            <img src="./img/fundadora.png" alt="Mayuri Hidalgo">
+        </div>
 
+        <div class="about-text-content reveal reveal-delay-1">
+            <span class="section-label">Nuestra Fundadora</span>
+            <h2 class="section-title" style="font-size: 3.5rem;">Soy Mayuri</h2>
+            
+            <p class="about-quote">
+                "Mujer de fe, creativa apasionada, mentora de vida y negocios creativos."
+            </p>
+
+            <div class="about-bio">
+                <p>Conferencista y empresaria por más de 20 años, CEO de <strong>Equipo Creativo</strong> y creadora del congreso <strong>Empresarias Creativas con Propósito</strong>. Mi misión es acompañarte a estructurar tu vida y negocio desde el disfrute, manteniendo el balance esencial con Dios, familia y amigos.</p>
+            </div>
+
+            <div class="about-highlights">
+                <div class="highlight-item">
+                    <span style="color:var(--orange)">★</span> 
+                    <span>Diferenciación, prosperidad y propósito</span>
+                </div>
+                <div class="highlight-item">
+                    <span style="color:var(--pink)">🦋</span> 
+                    <span>Transformación hacia tu mejor versión</span>
+                </div>
+                <div class="highlight-item">
+                    <span style="color:var(--orange)">🧡</span> 
+                    <span>Pasión, esencia creativa y disfrute</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="https://wa.me/18495179040" class="btn btn-pink">Conectar con Mayuri</a>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="sponsors-section" id="patrocinadores">
     <div class="section-header centered reveal">
         <span class="section-label">Para marcas y empresas</span>
@@ -647,5 +747,4 @@
 </body>
 
 </html>
-
 
