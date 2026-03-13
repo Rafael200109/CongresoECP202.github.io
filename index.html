@@ -226,44 +226,29 @@
         .chip { display:flex; align-items:center; gap:9px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:100px; padding:11px 20px; color:rgba(255,255,255,0.78); font-size:0.85rem; font-weight:600; }
 
         footer { background:#fff; border-top:1px solid var(--border); padding:56px 24px 36px; }
-        .footer-inner{
-    max-width:1100px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:40px;
-    align-items:center;
-    text-align:center;
-}
-
-.footer-col{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
-}
-
-.footer-logo{
-    max-width:180px;
-    height:auto;
-}
-
-.footer-contact-item{
-    font-size:0.85rem;
-    color:var(--muted);
-}
-
-.footer-follow{
-    font-size:0.8rem;
-    color:var(--muted);
-}
-
-@media(max-width:768px){
-    .footer-inner{
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-}
+        .footer-inner {
+            max-width:1100px; margin:0 auto;
+            display:grid; grid-template-columns:repeat(3,1fr);
+            gap:40px; align-items:center; text-align:center;
+        }
+        .footer-col { display:flex; flex-direction:column; align-items:center; gap:14px; }
+        .footer-logo { width:220px; height:160px; object-fit:contain; }
+        .footer-ig-link {
+            font-size:0.82rem; font-weight:700; text-decoration:none;
+            display:inline-flex; align-items:center; gap:6px;
+            color:var(--pink); transition:opacity 0.2s;
+        }
+        .footer-ig-link.aqua { color:var(--aqua); }
+        .footer-ig-link:hover { opacity:0.7; }
+        .footer-contact-item { font-size:0.85rem; color:var(--muted); }
+        .footer-follow { font-size:0.8rem; color:var(--muted); }
+        .footer-tagline {
+            max-width:1100px; margin:36px auto 0;
+            text-align:center; font-size:0.72rem; color:#ccc;
+            padding-top:20px; border-top:1px solid var(--border);
+            letter-spacing:0.4px;
+        }
+        @media(max-width:768px){ .footer-inner { grid-template-columns:1fr; gap:30px; } }
 
         .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible { opacity:1; transform:translateY(0); }
@@ -339,17 +324,7 @@
             .about-image-container { box-shadow: 15px 15px 0 var(--orange); }
         }
 
-        .footer-ig-link {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 8px;
-            transition: opacity 0.2s;
-        }
-        .footer-ig-link:hover { opacity: 0.7; }
+
     </style>
 </head>
 <body>
@@ -786,13 +761,13 @@
 </section>
 
 <footer>
-
 <div class="footer-inner">
 
     <!-- LOGO 1 -->
     <div class="footer-col">
         <img src="./img/logo_new.png" class="footer-logo" alt="Empresarias Creativas">
         <a href="https://www.instagram.com/empresariascreativas/" target="_blank" class="footer-ig-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             @empresariascreativas
         </a>
     </div>
@@ -800,39 +775,26 @@
     <!-- LOGO 2 -->
     <div class="footer-col">
         <img src="./img/EC Logo.png" class="footer-logo" alt="Equipo Creativo">
-        <a href="https://www.instagram.com/equipocreativord/" target="_blank" class="footer-ig-link">
+        <a href="https://www.instagram.com/equipocreativord/" target="_blank" class="footer-ig-link aqua">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             @equipocreativord
         </a>
     </div>
 
     <!-- CONTACTO -->
     <div class="footer-col footer-contact">
-
         <span class="section-label">Hablemos</span>
-
         <a href="https://wa.me/18495179040" class="btn btn-whatsapp">
             💬 Hablemos aquí
         </a>
-
-        <p class="footer-contact-item">
-            ✉ info@equipocreativord.com
-        </p>
-
-        <p class="footer-contact-item">
-            ☎ Tel: 809 288 24 89
-        </p>
-
-        <p class="footer-contact-item">
-            📱 Cel: 849 517 9040
-        </p>
-
-        <p class="footer-follow">
-            Síguenos en @empresariascreativasrd
-        </p>
-
+        <p class="footer-contact-item">✉ info@equipocreativord.com</p>
+        <p class="footer-contact-item">☎ Tel: 809 288 24 89</p>
+        <p class="footer-contact-item">📱 Cel: 849 517 9040</p>
+        <p class="footer-follow">Síguenos en @empresariascreativasrd</p>
     </div>
 
 </div>
+<p class="footer-tagline">Desarrollado con el don de la creatividad — Rafael Reyes Peña © 2026</p>
 </footer>
 
 <!-- Floating WhatsApp Button -->
@@ -877,6 +839,3 @@
 </script>
 </body>
 </html>
-
-
-
