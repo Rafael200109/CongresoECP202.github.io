@@ -333,6 +333,90 @@
             .about-image-container { box-shadow: 15px 15px 0 var(--orange); }
         }
 
+        /* VÍAS DE PAGO */
+        .pagos-section { background:#fff; }
+        .pagos-inner { max-width:1100px; margin:0 auto; }
+
+        .pagos-methods {
+            display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+            margin-bottom:52px;
+        }
+        .pago-method {
+            background:var(--cream); border:1px solid var(--border); border-radius:22px;
+            padding:22px 18px; text-align:center; transition:transform 0.3s, box-shadow 0.3s;
+            position:relative; overflow:hidden;
+        }
+        .pago-method::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:22px 22px 0 0;
+        }
+        .pago-method:nth-child(1)::before { background:var(--pink); }
+        .pago-method:nth-child(2)::before { background:var(--orange); }
+        .pago-method:nth-child(3)::before { background:var(--aqua); }
+        .pago-method:nth-child(4)::before { background:var(--pink); }
+        .pago-method:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(239,84,153,0.1); }
+        .pago-num {
+            width:40px; height:40px; border-radius:50%; display:inline-flex;
+            align-items:center; justify-content:center;
+            font-size:1rem; font-weight:900; color:#fff; margin-bottom:10px;
+        }
+        .pago-method:nth-child(1) .pago-num { background:var(--pink); }
+        .pago-method:nth-child(2) .pago-num { background:var(--orange); }
+        .pago-method:nth-child(3) .pago-num { background:var(--aqua); }
+        .pago-method:nth-child(4) .pago-num { background:var(--pink); }
+        .pago-method h3 { font-size:0.88rem; font-weight:800; color:var(--text); line-height:1.3; }
+
+        .pagos-accounts {
+            display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+            margin-bottom:36px;
+        }
+        .account-card {
+            background:var(--cream); border:1px solid var(--border); border-radius:24px;
+            padding:26px 22px; display:flex; flex-direction:column; gap:10px;
+            transition:transform 0.3s, box-shadow 0.3s;
+        }
+        .account-card:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(0,0,0,0.06); }
+        .account-header { display:flex; align-items:center; gap:12px; }
+        .bank-logo-wrap {
+            width:60px; height:60px; background:#fff; border-radius:14px;
+            border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+            flex-shrink:0; overflow:hidden; padding:6px;
+        }
+        .bank-logo-wrap img {
+            width:100%; height:100%; object-fit:contain; display:block;
+        }
+        .bank-name { font-size:0.75rem; font-weight:900; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+        .account-type { font-size:0.78rem; color:var(--muted); }
+        .account-holder { font-size:0.9rem; font-weight:700; color:var(--text); }
+        .account-number { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; color:var(--pink); letter-spacing:1px; }
+        .account-card:nth-child(2) .account-number { color:var(--orange); }
+        .account-card:nth-child(3) .account-number { color:var(--aqua); }
+
+        .pagos-cedula {
+            text-align:center; padding:18px 28px; background:var(--cream);
+            border:1px dashed var(--border); border-radius:18px;
+            font-size:0.9rem; color:var(--muted); margin-bottom:32px;
+        }
+        .pagos-cedula strong { color:var(--text); font-size:1rem; }
+
+        .pagos-importante {
+            background:linear-gradient(135deg, rgba(239,84,153,0.06), rgba(255,152,0,0.05));
+            border:1px solid rgba(239,84,153,0.18); border-left:5px solid var(--pink);
+            border-radius:20px; padding:28px 30px;
+        }
+        .pagos-importante .imp-label {
+            font-size:0.62rem; font-weight:900; text-transform:uppercase; letter-spacing:3px;
+            color:var(--pink); margin-bottom:8px; display:block;
+        }
+        .pagos-importante p { font-size:0.92rem; color:var(--text); line-height:1.7; }
+        .pagos-importante .imp-example {
+            margin-top:10px; background:#fff; border-radius:10px;
+            padding:10px 16px; font-size:0.85rem; color:var(--muted);
+            border:1px solid var(--border); display:inline-block;
+        }
+        .imp-example strong { color:var(--text); }
+
+        @media(max-width:900px) { .pagos-methods { grid-template-columns:repeat(2,1fr); } .pagos-accounts { grid-template-columns:1fr; } }
+        @media(max-width:600px) { .pagos-methods { grid-template-columns:repeat(2,1fr); } }
 
     </style>
 </head>
@@ -344,6 +428,7 @@
     <a href="#tickets">Boletas</a>
     <a href="#patrocinadores">Aliados</a>
     <a href="#reels">Reels</a>
+    <a href="#pagos">Pago</a>
     <a href="#tickets" class="nav-btn">Reservar ✦</a>
 </nav>
 
@@ -724,6 +809,86 @@
     </div>
 </section>
 
+<!-- VÍAS DE PAGO -->
+<section class="pagos-section" id="pagos">
+    <div class="pagos-inner">
+        <div class="section-header centered reveal">
+            <span class="section-label">Formas de pago</span>
+            <h2 class="section-title" style="font-family:'Genty',cursive">Vías de pago</h2>
+            <p class="section-desc">Elige el método que más te convenga para reservar tu lugar en ECP 2026</p>
+        </div>
+
+        <!-- 4 métodos -->
+        <div class="pagos-methods reveal">
+            <div class="pago-method">
+                <div class="pago-num">1</div>
+                <h3>Transferencia<br>a cuenta</h3>
+            </div>
+            <div class="pago-method">
+                <div class="pago-num">2</div>
+                <h3>Link para pago<br>con tarjeta</h3>
+            </div>
+            <div class="pago-method">
+                <div class="pago-num">3</div>
+                <h3>Cheque</h3>
+            </div>
+            <div class="pago-method">
+                <div class="pago-num">4</div>
+                <h3>Efectivo</h3>
+            </div>
+        </div>
+
+        <!-- Cuentas bancarias -->
+        <div class="pagos-accounts">
+            <div class="account-card reveal">
+                <div class="account-header">
+                    <div class="bank-logo-wrap"><img src="popular.png" alt="Banco Popular"></div>
+                    <div>
+                        <div class="bank-name">Banco Popular</div>
+                        <div class="account-type">Cta. Ahorro</div>
+                    </div>
+                </div>
+                <div class="account-holder">Mayuri Hidalgo</div>
+                <div class="account-number">679113647</div>
+            </div>
+            <div class="account-card reveal reveal-delay-1">
+                <div class="account-header">
+                    <div class="bank-logo-wrap"><img src="banreservas.svg" alt="Banco de Reservas"></div>
+                    <div>
+                        <div class="bank-name">Banco Reservas</div>
+                        <div class="account-type">Cta. Ahorro</div>
+                    </div>
+                </div>
+                <div class="account-holder">Mayuri Hidalgo</div>
+                <div class="account-number">5100101679</div>
+            </div>
+            <div class="account-card reveal reveal-delay-2">
+                <div class="account-header">
+                    <div class="bank-logo-wrap"><img src="asociacion.png" alt="Asociación Popular"></div>
+                    <div>
+                        <div class="bank-name">Asociación Popular</div>
+                        <div class="account-type">de Ahorros y Préstamos · Cta. Ahorro</div>
+                    </div>
+                </div>
+                <div class="account-holder">Mayuri Hidalgo</div>
+                <div class="account-number">1024839893</div>
+            </div>
+        </div>
+
+        <!-- Cédula -->
+        <div class="pagos-cedula reveal">
+            Cédula: <strong>001-1395020-8</strong>
+        </div>
+
+        <!-- Importante -->
+        <div class="pagos-importante reveal">
+            <span class="imp-label">⚠ Importante</span>
+            <p>Coloca una nota en el depósito con tu nombre completo, tipo de evento y modalidad de boleta o patrocinio.</p>
+            <div class="imp-example">Ej: <strong>Patricia León, ECP, Boleta VIP</strong></div>
+        </div>
+    </div>
+</section>
+
 <section class="reels-section" id="reels">
     <div class="section-header centered reveal">
         <span class="section-label">Momentos que inspiran</span>
@@ -829,7 +994,7 @@
     </svg>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -840,9 +1005,15 @@
 
     function shareSite() {
         if (navigator.share) {
-            navigator.share({ title: 'Congreso ECP 2026', url: window.location.href });
+            navigator.share({
+                title: 'Congreso ECP 2026',
+                text: '¡Únete al Congreso Empresarias Creativas 2026!',
+                url: window.location.href
+            });
         } else {
-            alert('Enlace copiado al portapapeles ✨');
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('¡Enlace copiado al portapapeles!');
+            });
         }
     }
 </script>
