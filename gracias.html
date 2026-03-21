@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias! — Congreso ECP 2026</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family:'Genty'; src:url('genty-regular.ttf') format('truetype'); }
+
+        :root {
+            --pink:      #ef5499;
+            --orange:    #ff9800;
+            --aqua:      #00acc1;
+            --red:       #8b0000;
+            --cream:     #fffaf5;
+            --dark:      #1a1014;
+            --text:      #2c2030;
+            --muted:     #9b8fa0;
+            --border:    #f0e8ee;
+            --whatsapp:  #25D366;
+        }
+
+        *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+        /* ── CONFETTI CANVAS ── */
+        #confetti-canvas {
+            position:fixed; inset:0; pointer-events:none; z-index:0;
+        }
+
+        /* ── HERO GRACIAS ── */
+        .gracias-hero {
+            min-height:52vh; position:relative;
+            display:flex; flex-direction:column; align-items:center; justify-content:center;
+            text-align:center; padding:100px 24px 60px;
+            background:linear-gradient(135deg, #fff5fb 0%, var(--cream) 60%, #f0fafc 100%);
+            overflow:hidden;
+        }
+        .gracias-hero::before {
+            content:''; position:absolute; inset:0;
+            background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(239,84,153,0.08) 0%, transparent 70%),
+                        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(0,172,193,0.07) 0%, transparent 60%);
+        }
+
+        .check-ring {
+            width:90px; height:90px; border-radius:50%;
+            background:linear-gradient(135deg, var(--pink), var(--orange));
+            display:flex; align-items:center; justify-content:center;
+            box-shadow: 0 0 0 14px rgba(239,84,153,0.12), 0 16px 48px rgba(239,84,153,0.3);
+            margin-bottom:28px; position:relative; z-index:1;
+            animation: popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+        .check-ring svg { width:44px; height:44px; }
+
+        @keyframes popIn   { from{opacity:0;transform:scale(0.4)} to{opacity:1;transform:scale(1)} }
+        @keyframes fadeUp  { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeDown{ from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+
+        .gracias-eyebrow {
+            font-size:0.68rem; font-weight:900; text-transform:uppercase; letter-spacing:3px;
+            color:var(--orange); margin-bottom:10px; position:relative; z-index:1;
+            animation:fadeDown 0.7s 0.4s both;
+        }
+        .gracias-title {
+            font-family:'Genty',cursive; font-size:clamp(2.4rem,6vw,4rem);
+            color:var(--pink); line-height:1.1; margin-bottom:16px;
+            position:relative; z-index:1;
+            animation:fadeDown 0.8s 0.5s both;
+            text-shadow:0 4px 24px rgba(239,84,153,0.25);
+        }
+        .gracias-sub {
+            font-family:'Cormorant Garamond',serif; font-style:italic;
+            font-size:clamp(1.1rem,2.5vw,1.5rem); font-weight:600;
+            color:var(--text); max-width:540px; line-height:1.5;
+            position:relative; z-index:1;
+            animation:fadeUp 0.8s 0.65s both;
+        }
+
+        /* ── PASO A PASO ── */
+        .steps-section { padding:72px 24px; background:#fff; }
+        .steps-inner { max-width:860px; margin:0 auto; }
+
+        .step-list { display:flex; flex-direction:column; gap:0; position:relative; }
+        .step-list::before {
+            content:''; position:absolute; left:26px; top:26px; bottom:26px;
+            width:2px; background:linear-gradient(to bottom, var(--pink), var(--orange), var(--aqua));
+            border-radius:2px;
+        }
+
+        .step-item {
+            display:flex; gap:22px; align-items:flex-start;
+            padding:28px 0;
+            border-bottom:1px solid var(--border);
+            opacity:0; transform:translateX(-16px);
+            transition:opacity 0.6s ease, transform 0.6s ease;
+        }
+        .step-item:last-child { border-bottom:none; }
+        .step-item.visible { opacity:1; transform:translateX(0); }
+
+        .step-num {
+            width:52px; height:52px; border-radius:50%; flex-shrink:0;
+            display:flex; align-items:center; justify-content:center;
+            font-weight:900; font-size:1.1rem; color:#fff; position:relative; z-index:1;
+        }
+        .step-num.s1 { background:linear-gradient(135deg,var(--pink),#d4407f); box-shadow:0 6px 18px rgba(239,84,153,0.35); }
+        .step-num.s2 { background:linear-gradient(135deg,var(--orange),#e68a00); box-shadow:0 6px 18px rgba(255,152,0,0.35); }
+        .step-num.s3 { background:linear-gradient(135deg,var(--aqua),#0097a7);  box-shadow:0 6px 18px rgba(0,172,193,0.35); }
+
+        .step-content { padding-top:10px; }
+        .step-content h3 { font-size:1rem; font-weight:800; color:var(--text); margin-bottom:5px; }
+        .step-content p  { font-size:0.88rem; color:var(--muted); line-height:1.6; }
+
+        /* ── POR QUÉ ECP ── */
+        .porque-section { padding:80px 24px; background:var(--cream); }
+        .porque-inner { max-width:960px; margin:0 auto; }
+
+        .section-label { font-size:0.63rem; font-weight:900; text-transform:uppercase; letter-spacing:3px; color:var(--muted); margin-bottom:10px; display:block; }
+        .section-title { font-family:'Genty',cursive; font-size:clamp(1.8rem,4.5vw,2.8rem); line-height:1.05; margin-bottom:12px; color:var(--pink); }
+        .section-header { margin-bottom:48px; }
+        .centered { text-align:center; }
+        .centered .section-desc { margin:0 auto; }
+        .section-desc { font-size:0.93rem; color:var(--muted); max-width:520px; line-height:1.7; }
+
+        .razones-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+        .razon-card {
+            background:#fff; border-radius:26px; border:1px solid var(--border);
+            padding:32px 24px; position:relative; overflow:hidden;
+            transition:transform 0.3s, box-shadow 0.3s;
+            opacity:0; transform:translateY(20px);
+            transition:opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+        }
+        .razon-card.visible { opacity:1; transform:translateY(0); }
+        .razon-card:hover { transform:translateY(-5px); box-shadow:0 18px 48px rgba(0,0,0,0.07); }
+        .razon-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:5px;
+            border-radius:26px 26px 0 0;
+        }
+        .razon-card:nth-child(1)::before { background:var(--pink); }
+        .razon-card:nth-child(2)::before { background:var(--orange); }
+        .razon-card:nth-child(3)::before { background:var(--aqua); }
+
+        .razon-icon {
+            width:52px; height:52px; border-radius:16px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.5rem; margin-bottom:18px;
+        }
+        .razon-card:nth-child(1) .razon-icon { background:rgba(239,84,153,0.1); }
+        .razon-card:nth-child(2) .razon-icon { background:rgba(255,152,0,0.1); }
+        .razon-card:nth-child(3) .razon-icon { background:rgba(0,172,193,0.1); }
+
+        .razon-card h3 { font-size:0.95rem; font-weight:800; color:var(--text); margin-bottom:10px; line-height:1.35; }
+        .razon-card p  { font-size:0.85rem; color:var(--muted); line-height:1.65; }
+
+        /* ── CTA FORMULARIO ── */
+        .form-section { padding:80px 24px; background:#fff; }
+        .form-inner {
+            max-width:700px; margin:0 auto; text-align:center;
+        }
+        .form-card {
+            background:var(--cream); border:1px solid var(--border);
+            border-radius:36px; padding:52px 40px;
+            box-shadow:0 20px 60px rgba(239,84,153,0.08);
+            position:relative; overflow:hidden;
+        }
+        .form-card::before {
+            content:''; position:absolute; inset:0;
+            background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(239,84,153,0.06), transparent 70%);
+        }
+        .form-card > * { position:relative; z-index:1; }
+
+        .form-badge {
+            display:inline-flex; align-items:center; gap:7px;
+            background:rgba(239,84,153,0.1); color:var(--pink);
+            font-size:0.62rem; font-weight:900; text-transform:uppercase; letter-spacing:2px;
+            padding:5px 16px; border-radius:100px; margin-bottom:20px;
+            border:1px solid rgba(239,84,153,0.2);
+        }
+        .form-title {
+            font-family:'Genty',cursive; font-size:clamp(1.6rem,4vw,2.4rem);
+            color:var(--pink); margin-bottom:14px; line-height:1.1;
+        }
+        .form-desc {
+            font-size:0.92rem; color:var(--muted); line-height:1.7; margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto;
+        }
+
+        .btn {
+            padding:14px 36px; border-radius:100px;
+            font-family:'DM Sans',sans-serif; font-weight:800; font-size:0.78rem;
+            text-transform:uppercase; letter-spacing:1px;
+            text-decoration:none; border:none; cursor:pointer;
+            transition:transform 0.2s, box-shadow 0.2s, background 0.2s;
+            display:inline-flex; align-items:center; gap:8px;
+        }
+        .btn:hover { transform:translateY(-2px); }
+        .btn-pink  { background:var(--pink); color:#fff; box-shadow:0 6px 20px rgba(239,84,153,0.4); }
+        .btn-pink:hover { background:#d4407f; }
+        .btn-ghost-dark { background:transparent; color:var(--text); border:2px solid var(--border); }
+        .btn-ghost-dark:hover { border-color:var(--pink); color:var(--pink); }
+        .btn-whatsapp { background:var(--whatsapp); color:#fff; box-shadow:0 6px 20px rgba(37,211,102,0.3); }
+        .btn-whatsapp:hover { background:#20bd5a; }
+
+        .form-note {
+            margin-top:18px; font-size:0.75rem; color:var(--muted);
+        }
+
+        /* ── FOOTER ── */
+        footer { background:#fff; border-top:1px solid var(--border); padding:56px 24px 36px; }
+        .footer-inner {
+            max-width:1100px; margin:0 auto;
+            display:grid; grid-template-columns:repeat(3,1fr);
+            gap:40px; align-items:center; text-align:center;
+        }
+        .footer-col { display:flex; flex-direction:column; align-items:center; gap:14px; }
+        .footer-logo { width:280px; height:200px; object-fit:contain; }
+        .footer-logo.logo-ec { width:320px; height:200px; }
+        .footer-ig-link {
+            font-size:0.82rem; font-weight:700; text-decoration:none;
+            display:inline-flex; align-items:center; gap:6px;
+            color:var(--pink); transition:opacity 0.2s;
+        }
+        .footer-ig-link.aqua { color:var(--aqua); }
+        .footer-ig-link:hover { opacity:0.7; }
+        .footer-contact-item { font-size:0.85rem; color:var(--muted); }
+        .footer-follow { font-size:0.8rem; color:var(--muted); }
+        .footer-tagline {
+            max-width:1100px; margin:36px auto 0;
+            text-align:center; font-size:0.72rem; color:#ccc;
+            padding-top:20px; border-top:1px solid var(--border);
+            letter-spacing:0.4px;
+        }
+        @media(max-width:768px){ .footer-inner { grid-template-columns:1fr; gap:30px; } }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:860px) { .razones-grid { grid-template-columns:1fr; } }
+        @media(max-width:600px) {
+            .form-card { padding:36px 22px; }
+            .step-list::before { left:24px; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="gracias-hero">
+    <div class="check-ring">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 22L18.5 31L34 13" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <p class="gracias-eyebrow">Congreso ECP 2026 · Vol. 4.0</p>
+    <h1 class="gracias-title">¡Tu boleta está confirmada!</h1>
+    <p class="gracias-sub">Bienvenida al evento que transforma tu visión empresarial. Solo falta un paso más.</p>
+</section>
+
+<!-- ═══════════ PASOS ═══════════ -->
+<section class="steps-section">
+    <div class="steps-inner">
+        <div class="section-header">
+            <span class="section-label">Lo que sigue</span>
+            <h2 class="section-title" style="color:var(--text)">¿Qué hacer ahora?</h2>
+        </div>
+        <div class="step-list">
+            <div class="step-item">
+                <div class="step-num s1">1</div>
+                <div class="step-content">
+                    <h3>Revisa tu correo electrónico</h3>
+                    <p>Recibirás un correo de confirmación con el comprobante de tu compra. Si no lo ves, revisa tu carpeta de spam.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num s2">2</div>
+                <div class="step-content">
+                    <h3>Completa el formulario de inscripción</h3>
+                    <p>Es obligatorio llenar el formulario para quedar debidamente inscrita en el congreso y recibir toda la información del evento.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num s3">3</div>
+                <div class="step-content">
+                    <h3>¡Nos vemos el 28 de marzo!</h3>
+                    <p>Salón Gobernación Provincial, San Cristóbal · 2:00 PM – 8:00 PM. Llega puntual y lista para transformar tu negocio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ POR QUÉ ═══════════ -->
+<section class="porque-section">
+    <div class="porque-inner">
+        <div class="section-header centered">
+            <span class="section-label">Esto es para ti si…</span>
+            <h2 class="section-title">Eres Empresaria o Emprendedora</h2>
+            <p class="section-desc">ECP está diseñado para mujeres que quieren llevar su negocio al siguiente nivel con claridad y propósito.</p>
+        </div>
+        <div class="razones-grid">
+            <div class="razon-card">
+                <div class="razon-icon">🧭</div>
+                <h3>Necesitas claridad en tus próximos pasos</h3>
+                <p>Aprenderás estrategias concretas para expandirte y definir el camino correcto para tu negocio.</p>
+            </div>
+            <div class="razon-card">
+                <div class="razon-icon">🤝</div>
+                <h3>Quieres formar un equipo que prospere</h3>
+                <p>Descubrirás cómo fidelizar clientes y colaboradores para construir un negocio sólido y duradero.</p>
+            </div>
+            <div class="razon-card">
+                <div class="razon-icon">📈</div>
+                <h3>Quieres vender más con IA y Marketing Digital</h3>
+                <p>Dominarás las herramientas de MKT digital e Inteligencia Artificial para tener claridad financiera y crecer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ CTA FORMULARIO ═══════════ -->
+<section class="form-section">
+    <div class="form-inner">
+        <div class="form-card">
+            <div class="form-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                Paso obligatorio
+            </div>
+            <h2 class="form-title">Completa tu inscripción</h2>
+            <p class="form-desc">
+                Luego de comprar tu boleta, debes inscribirte en el formulario oficial para quedar registrada y recibir toda la información del evento.
+            </p>
+            <a href="https://forms.gle/a1NgWqzbnD4EWWni8" target="_blank" class="btn btn-pink" style="font-size:0.85rem; padding:16px 42px;">
+                ✦ Llenar Formulario de Inscripción
+            </a>
+            <p class="form-note">El formulario se abrirá en una nueva pestaña. Solo toma 2 minutos.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+<div class="footer-inner">
+
+    <div class="footer-col">
+        <img src="./img/logo_new.png" class="footer-logo" alt="Empresarias Creativas">
+        <a href="https://www.instagram.com/empresariascreativas/" target="_blank" class="footer-ig-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @empresariascreativas
+        </a>
+    </div>
+
+    <div class="footer-col">
+        <img src="./img/EC Logo.png" class="footer-logo logo-ec" alt="Equipo Creativo">
+        <a href="https://www.instagram.com/equipocreativord/" target="_blank" class="footer-ig-link aqua">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @equipocreativord
+        </a>
+    </div>
+
+    <div class="footer-col footer-contact">
+        <span class="section-label">Hablemos</span>
+        <a href="https://wa.me/18495179040" class="btn btn-whatsapp">💬 Hablemos aquí</a>
+        <p class="footer-contact-item">☎ Tel: 809 288 24 89</p>
+        <p class="footer-contact-item">📱 Cel: 849 517 9040</p>
+        <p class="footer-follow">Síguenos en @empresariascreativasrd</p>
+    </div>
+
+</div>
+<p class="footer-tagline">Desarrollado con el don de la creatividad — Rafael Reyes Peña © 2026</p>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/18495179040" target="_blank" aria-label="WhatsApp" style="
+    position:fixed; bottom:28px; right:28px; z-index:9999;
+    width:58px; height:58px; border-radius:50%; background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 24px rgba(37,211,102,0.45); transition:transform 0.2s, box-shadow 0.2s;
+" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#fff">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.862L.057 23.522a.75.75 0 0 0 .921.921l5.66-1.476A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.715 9.715 0 0 1-4.953-1.354l-.355-.212-3.658.953.974-3.56-.232-.368A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+    </svg>
+</a>
+
+<script>
+    /* ── Reveal on scroll ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.step-item, .razon-card').forEach(el => observer.observe(el));
+
+    /* ── Stagger delays ── */
+    document.querySelectorAll('.step-item').forEach((el, i) => el.style.transitionDelay = `${i * 0.15}s`);
+    document.querySelectorAll('.razon-card').forEach((el, i) => el.style.transitionDelay = `${i * 0.12}s`);
+
+    /* ── Confetti ── */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx    = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+    const colors = ['#ef5499','#ff9800','#00acc1','#fff','#ffd54f'];
+    const pieces = Array.from({length: 110}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        r: Math.random() * 7 + 3,
+        d: Math.random() * 3 + 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10 - 5,
+        tiltSpeed: Math.random() * 0.04 + 0.01,
+        angle: 0
+    }));
+
+    let frame = 0;
+    function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (frame > 280) return; // stop after ~5 seconds
+        frame++;
+        pieces.forEach(p => {
+            p.y += p.d;
+            p.angle += p.tiltSpeed;
+            p.tilt = Math.sin(p.angle) * 12;
+            if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+            ctx.beginPath();
+            ctx.lineWidth = p.r;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt, p.y);
+            ctx.lineTo(p.x + p.tilt + p.r, p.y + p.tilt + p.r);
+            ctx.stroke();
+        });
+        requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+</script>
+</body>
+</html>
