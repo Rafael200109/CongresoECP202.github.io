@@ -115,14 +115,44 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:16px 48px;display:fl
 .pg-fly::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(0,0,0,.28) 0%,transparent 65%);opacity:0;pointer-events:none;z-index:3;transition:opacity .08s}
 .pg-fly.flying::after{opacity:1}
 
+/* ── Desktop: sin cambios ── */
 .pg-fly.mode-desktop{left:50%;width:50%;border-radius:0 6px 6px 0;transform-origin:left center}
 .pg-fly.mode-desktop.go-forward{animation:flyFwd .72s cubic-bezier(.645,.045,.355,1) forwards}
 .pg-fly.mode-desktop.go-back{left:0;width:50%;border-radius:6px 0 0 6px;transform-origin:right center;animation:flyBck .72s cubic-bezier(.645,.045,.355,1) forwards}
 
-.pg-fly.mode-mobile{left:0;width:100%;border-radius:6px;transform-origin:right center}
-.pg-fly.mode-mobile.go-forward{animation:flyFwd .72s cubic-bezier(.645,.045,.355,1) forwards}
-.pg-fly.mode-mobile.go-back{transform-origin:left center;animation:flyBck .72s cubic-bezier(.645,.045,.355,1) forwards}
+/*
+  ── MOBILE CORREGIDO ──
+  Al avanzar (go-forward): la página actual "se dobla" saliendo por la DERECHA,
+  como si sostuvieras el lomo con la mano izquierda y pasaras la hoja con la derecha.
+  → origin: left center   → rotateY(+180deg)  [flyBckMob]
 
+  Al retroceder (go-back): la hoja "vuelve" entrando por la IZQUIERDA.
+  → origin: right center  → rotateY(-180deg)  [flyFwdMob]
+*/
+.pg-fly.mode-mobile{
+  left:0;width:100%;border-radius:6px;
+  transform-origin:left center;           /* adelante: bisagra en el lomo (izquierda) */
+}
+.pg-fly.mode-mobile.go-forward{
+  animation:flyMobFwd .72s cubic-bezier(.645,.045,.355,1) forwards;
+}
+.pg-fly.mode-mobile.go-back{
+  transform-origin:right center;          /* atrás: bisagra en el canto derecho */
+  animation:flyMobBck .72s cubic-bezier(.645,.045,.355,1) forwards;
+}
+
+/* Avanzar en móvil: la hoja sale girando hacia la izquierda (como pasar página real) */
+@keyframes flyMobFwd{
+  0%  { transform: rotateY(0deg); }
+  100%{ transform: rotateY(-180deg); }
+}
+/* Retroceder en móvil: la hoja vuelve girando hacia la derecha */
+@keyframes flyMobBck{
+  0%  { transform: rotateY(0deg); }
+  100%{ transform: rotateY(180deg); }
+}
+
+/* Desktop mantiene sus animaciones originales */
 @keyframes flyFwd{0%{transform:rotateY(0)}100%{transform:rotateY(-180deg)}}
 @keyframes flyBck{0%{transform:rotateY(0)}100%{transform:rotateY(180deg)}}
 
@@ -322,7 +352,6 @@ function maxSpread() { return mode === 'mobile' ? TOTAL - 1 : Math.ceil(TOTAL / 
 
 /* ════════════════════════════════════════════
    INIT MODE
-   Reconstruye el libro según el breakpoint actual.
 ════════════════════════════════════════════ */
 function initMode() {
   const newMode = isMob() ? 'mobile' : 'desktop';
