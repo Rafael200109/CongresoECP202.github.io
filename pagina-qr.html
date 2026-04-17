@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR · Mentoría Vida y Negocio Creativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --orange:#ff8500;
+  --orange-dark:#e07200;
+  --orange-deep:#c85f00;
+  --orange-light:#ffb05a;
+  --orange-pale:#fff3e0;
+  --orange-faint:#fff8f0;
+  --orange-glow:rgba(255,133,0,0.18);
+  --dark:#1a0c00;
+  --mid:#7a3d00;
+  --muted:#b36b20;
+  --cream:#fffbf5;
+}
+
+html,body{
+  width:100%;min-height:100vh;
+  background:var(--cream);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* grain */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* blobs */
+.blob1{position:fixed;top:-15vh;right:-10vw;width:55vw;height:55vw;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,133,0,0.11) 0%,transparent 65%);
+  pointer-events:none;z-index:0;animation:drift 18s ease-in-out infinite alternate;}
+.blob2{position:fixed;bottom:-12vh;left:-8vw;width:42vw;height:42vw;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,176,90,0.10) 0%,transparent 70%);
+  pointer-events:none;z-index:0;animation:drift 22s ease-in-out infinite alternate-reverse;}
+
+@keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(2%,2%) scale(1.04);}}
+@keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes shimmer{0%{background-position:200% center;}100%{background-position:-200% center;}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.5;}100%{transform:scale(1.18);opacity:0;}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes rotateSlowly{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* ─── CARD ─── */
+.card{
+  position:relative;z-index:1;
+  width:min(920px, 96vw);
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 40px 100px rgba(200,95,0,0.18), 0 10px 30px rgba(0,0,0,0.06);
+  border:1px solid rgba(255,133,0,0.14);
+  animation:up .8s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ─── LEFT PANEL ─── */
+.panel-left{
+  background:linear-gradient(170deg,#1a0c00 0%,#2e1500 50%,#3d1c00 100%);
+  position:relative;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  min-height:560px;
+}
+
+/* decorative dot grid */
+.panel-left::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(255,133,0,0.12) 1px,transparent 1px);
+  background-size:22px 22px;opacity:.7;
+}
+
+/* decorative arc */
+.panel-left::after{
+  content:'';position:absolute;bottom:-80px;left:-80px;
+  width:280px;height:280px;border-radius:50%;
+  border:50px solid rgba(255,133,0,0.07);
+  pointer-events:none;
+}
+
+/* arc top */
+.arc-top{
+  position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  border:35px solid rgba(255,133,0,0.06);
+  pointer-events:none;
+}
+
+/* photo area */
+.photo-area{
+  flex:1;position:relative;overflow:hidden;
+}
+
+.photo-area img{
+  position:absolute;bottom:0;left:50%;
+  transform:translateX(-50%);
+  height:100%;width:auto;
+  max-width:none;
+  object-fit:contain;object-position:bottom center;
+  filter:contrast(1.02) saturate(1.0) brightness(1.04);
+  z-index:2;
+  opacity:0;
+  animation:fadeIn 1s ease .5s both;
+}
+
+.photo-area::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:30%;
+  background:linear-gradient(to top,rgba(26,12,0,0.6) 0%,transparent 100%);
+  z-index:3;pointer-events:none;
+}
+
+/* identity strip at bottom of photo */
+.identity{
+  position:relative;z-index:5;
+  padding:18px 22px;
+  background:rgba(26,12,0,0.85);
+  backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,133,0,0.2);
+}
+.identity-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,2vw,22px);font-weight:700;font-style:italic;
+  color:#fff;margin-bottom:6px;line-height:1.1;
+}
+.identity-name span{color:var(--orange-light);}
+.chips-row{display:flex;flex-wrap:wrap;gap:4px;}
+.tc{
+  background:rgba(255,133,0,0.15);border:1px solid rgba(255,133,0,0.3);
+  border-radius:4px;padding:3px 8px;
+  font-size:8px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+  color:rgba(255,176,90,0.9);
+}
+
+/* ─── RIGHT PANEL ─── */
+.panel-right{
+  background:var(--cream);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:36px 44px;
+  position:relative;
+  overflow:hidden;
+  gap:0;
+}
+
+/* subtle dot pattern */
+.panel-right::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(255,133,0,0.07) 1px,transparent 1px);
+  background-size:20px 20px;
+}
+
+/* decorative vertical line */
+.v-line{
+  position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(255,133,0,0.2) 30%,rgba(255,133,0,0.2) 70%,transparent);
+}
+
+.right-inner{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;
+  align-items:center;
+  gap:0;
+  width:100%;
+}
+
+/* ECP logo row */
+.brand-row{
+  display:flex;align-items:center;gap:8px;margin-bottom:24px;
+  opacity:0;animation:up .6s ease .3s both;
+}
+.brand-mark{
+  width:30px;height:30px;border-radius:50%;
+  border:1.5px solid var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:var(--orange);
+  background:rgba(255,133,0,0.07);
+}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:var(--orange-deep);}
+.brand-sub{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+
+/* ornament */
+.orn{display:flex;align-items:center;gap:10px;margin-bottom:10px;width:100%;opacity:0;animation:up .6s ease .4s both;}
+.orn-rule{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(255,133,0,0.3));}
+.orn-rule-r{flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(255,133,0,0.3));}
+.orn-text{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+
+/* titles */
+.title-serif{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,54px);
+  font-weight:700;font-style:italic;
+  color:var(--orange);line-height:.88;letter-spacing:-1px;
+  text-align:center;
+  margin-bottom:4px;
+  opacity:0;animation:up .8s ease .5s both;
+}
+.title-sans{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(16px,2.2vw,22px);
+  font-weight:800;color:var(--dark);line-height:1.1;
+  letter-spacing:-0.5px;text-align:center;
+  margin-bottom:6px;
+  opacity:0;animation:up .8s ease .6s both;
+}
+.title-sans em{color:var(--orange);font-style:normal;}
+
+.divider{display:flex;align-items:center;gap:8px;margin:14px 0;opacity:0;animation:up .6s ease .7s both;}
+.divider-bar{width:36px;height:2px;background:linear-gradient(to right,var(--orange),var(--orange-light));border-radius:2px;}
+.divider-petal{font-size:12px;color:var(--orange-light);}
+
+/* QR container */
+.qr-container{
+  position:relative;
+  margin:6px 0 18px;
+  opacity:0;animation:up .8s ease .8s both;
+}
+
+/* pulse rings */
+.qr-ring{
+  position:absolute;inset:-12px;border-radius:20px;
+  border:2px solid rgba(255,133,0,0.3);
+  animation:pulseRing 2.5s ease-out infinite;
+}
+.qr-ring:nth-child(2){
+  inset:-20px;border-radius:26px;
+  border-color:rgba(255,133,0,0.15);
+  animation-delay:.8s;
+}
+
+/* decorative corner marks */
+.qr-frame{
+  position:absolute;inset:-6px;pointer-events:none;
+}
+.qr-frame::before,.qr-frame::after{
+  content:'';position:absolute;
+  width:18px;height:18px;
+  border-color:var(--orange);border-style:solid;
+}
+.qr-frame::before{top:0;left:0;border-width:2px 0 0 2px;border-radius:4px 0 0 0;}
+.qr-frame::after{bottom:0;right:0;border-width:0 2px 2px 0;border-radius:0 0 4px 0;}
+.qr-frame-tl,.qr-frame-tr,.qr-frame-bl,.qr-frame-br{
+  position:absolute;width:18px;height:18px;
+  border-color:var(--orange);border-style:solid;
+}
+.qr-frame-tl{top:-6px;left:-6px;border-width:2px 0 0 2px;border-radius:4px 0 0 0;}
+.qr-frame-tr{top:-6px;right:-6px;border-width:2px 2px 0 0;border-radius:0 4px 0 0;}
+.qr-frame-bl{bottom:-6px;left:-6px;border-width:0 0 2px 2px;border-radius:0 0 0 4px;}
+.qr-frame-br{bottom:-6px;right:-6px;border-width:0 2px 2px 0;border-radius:0 0 4px 0;}
+
+.qr-box{
+  position:relative;z-index:2;
+  background:white;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 8px 32px rgba(200,95,0,0.14), 0 2px 8px rgba(0,0,0,0.05);
+  border:1px solid rgba(255,133,0,0.15);
+  display:inline-flex;
+}
+#qrcode{display:block;line-height:0;}
+#qrcode canvas{display:block!important;border-radius:4px;width:220px!important;height:220px!important;}
+#qrcode img{display:none!important;}
+
+/* logo inside QR area */
+.qr-logo{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:28px;height:28px;border-radius:50%;z-index:10;
+  background:white;border:2px solid rgba(255,133,0,0.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;pointer-events:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* scan label */
+.scan-label{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,133,0,0.08);border:1px solid rgba(255,133,0,0.2);
+  border-radius:50px;padding:7px 16px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange-deep);
+  margin-bottom:14px;
+  opacity:0;animation:up .6s ease .95s both;
+}
+.scan-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);animation:blink 2s ease-in-out infinite;}
+
+/* url hint */
+.url-hint{
+  font-size:9px;color:var(--muted);letter-spacing:.5px;
+  text-align:center;
+  opacity:0;animation:up .5s ease 1.05s both;
+  font-style:italic;
+}
+</style>
+</head>
+<body>
+
+<div class="blob1"></div>
+<div class="blob2"></div>
+
+<div class="card">
+
+  <!-- LEFT: Photo -->
+  <div class="panel-left">
+    <div class="arc-top"></div>
+
+    <div class="photo-area">
+      <img id="mayuri-photo" src="mayuri.png" alt="Mayuri Hidalgo" />
+    </div>
+
+    <div class="identity">
+      <div class="identity-name"><span>Mayuri</span> Hidalgo</div>
+      <div class="chips-row">
+        <span class="tc">CEO Equipo Creativo</span>
+        <span class="tc">Fundadora ECP</span>
+        <span class="tc">Mentora de Vida y Negocio</span>
+        <span class="tc">Conferencista</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: QR -->
+  <div class="panel-right">
+    <div class="v-line"></div>
+    <div class="right-inner">
+
+      <div class="brand-row">
+        <div class="brand-mark">♥</div>
+        <div>
+          <div class="brand-name">Empresarias Creativas</div>
+          <div class="brand-sub">Con Propósito · ECP</div>
+        </div>
+      </div>
+
+      <div class="orn">
+        <div class="orn-rule"></div>
+        <div class="orn-text">Mentoría Exclusiva</div>
+        <div class="orn-rule-r"></div>
+      </div>
+
+      <div class="title-serif">Mentoría</div>
+      <div class="title-sans">Vida y <em>Negocio</em> Creativo</div>
+
+      <div class="divider">
+        <div class="divider-bar"></div>
+        <div class="divider-petal">✿</div>
+        <div class="divider-bar" style="background:linear-gradient(to left,var(--orange),var(--orange-light));"></div>
+      </div>
+
+      <div class="scan-label">
+        <div class="scan-dot"></div>
+        Escanea para inscribirte
+      </div>
+
+      <div class="qr-container">
+        <div class="qr-ring"></div>
+        <div class="qr-ring"></div>
+        <div class="qr-box">
+          <div id="qrcode"></div>
+          <div class="qr-logo">♥</div>
+        </div>
+        <div class="qr-frame-tl"></div>
+        <div class="qr-frame-tr"></div>
+        <div class="qr-frame-bl"></div>
+        <div class="qr-frame-br"></div>
+      </div>
+
+      <div class="url-hint">forms.gle/HPo8azkJyyzjYpJq5 &nbsp;·&nbsp; Plazas limitadas</div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('mayuri-photo').onerror = function(){
+    this.onerror=null; this.src='mayuli.png';
+  };
+
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://forms.gle/HPo8azkJyyzjYpJq5",
+    width: 220,
+    height: 220,
+    colorDark: "#c85f00",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+</script>
+</body>
+</html>
