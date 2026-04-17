@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentoría Vida y Negocio Creativo – Mayuri Hidalgo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --orange:#ff8500;
+  --orange-dark:#e07200;
+  --orange-deep:#c85f00;
+  --orange-light:#ffb05a;
+  --orange-pale:#fff3e0;
+  --orange-faint:#fff8f0;
+  --orange-glow:rgba(255,133,0,0.18);
+  --orange-line:rgba(255,133,0,0.15);
+  --dark:#1a0c00;
+  --mid:#7a3d00;
+  --muted:#b36b20;
+  --cream:#fffbf5;
+  --warm:#fff0d6;
+}
+
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  background:var(--cream);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--dark);
+}
+
+/* grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ambient blobs */
+.blob1{position:fixed;top:-15vh;right:-10vw;width:55vw;height:55vw;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,133,0,0.13) 0%,transparent 65%);
+  pointer-events:none;z-index:0;animation:drift 18s ease-in-out infinite alternate;}
+.blob2{position:fixed;bottom:-12vh;left:-8vw;width:42vw;height:42vw;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,176,90,0.12) 0%,transparent 70%);
+  pointer-events:none;z-index:0;animation:drift 22s ease-in-out infinite alternate-reverse;}
+
+@keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(2%,2%) scale(1.04);}}
+@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes photoIn{from{opacity:0;transform:translateX(-50%) scale(0.97) translateY(10px);}to{opacity:1;transform:translateX(-50%) scale(1) translateY(0);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes sweep{0%{left:-100%;}60%{left:130%;}100%{left:130%;}}
+@keyframes expandX{from{transform:scaleX(0);opacity:0;}to{transform:scaleX(1);opacity:1;}}
+@keyframes shimmer{0%{background-position:200% center;}100%{background-position:-200% center;}}
+
+/* full-viewport layout */
+.page{
+  position:relative;z-index:1;
+  width:100%;height:100vh;
+  display:grid;
+  grid-template-rows:56px 1fr 52px;
+  overflow:hidden;
+}
+
+/* ── HEADER ── */
+header{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:10px;
+  padding:0 clamp(18px,3.5vw,60px);
+  border-bottom:1px solid var(--orange-line);
+  background:rgba(255,251,245,0.92);
+  backdrop-filter:blur(14px);
+  z-index:100;
+}
+.logo-wrap{display:flex;align-items:center;gap:10px;opacity:0;animation:up .6s ease .1s both;}
+.logo-mark{
+  width:34px;height:34px;border-radius:50%;
+  border:1.5px solid var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:var(--orange);
+  background:rgba(255,133,0,0.07);
+}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:clamp(12px,1vw,15px);font-weight:700;color:var(--orange-deep);letter-spacing:.3px;line-height:1.2;}
+.logo-sub{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.pill{
+  opacity:0;animation:up .6s ease .2s both;
+  border:1px solid rgba(255,133,0,0.35);border-radius:50px;
+  padding:6px 18px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange-deep);background:rgba(255,133,0,0.07);white-space:nowrap;
+}
+.live-badge{opacity:0;animation:up .6s ease .3s both;display:flex;align-items:center;gap:7px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:blink 2s ease-in-out infinite;}
+.live-text{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* ── HERO ── */
+.hero{
+  display:grid;
+  grid-template-columns:1fr clamp(280px,33vw,480px);
+  min-height:0;overflow:hidden;
+}
+
+/* LEFT */
+.left{
+  padding:clamp(20px,3vh,40px) clamp(18px,4vw,72px);
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;
+}
+.orn{display:flex;align-items:center;gap:12px;margin-bottom:clamp(10px,1.8vh,22px);opacity:0;animation:up .6s ease .4s both;}
+.orn-rule{flex:1;max-width:36px;height:1px;background:linear-gradient(to right,transparent,var(--orange-light));}
+.orn-rule-r{flex:1;max-width:36px;height:1px;background:linear-gradient(to left,transparent,var(--orange-light));}
+.orn-text{font-size:9px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+
+.chip{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,133,0,0.08);border:1px solid rgba(255,133,0,0.25);
+  border-radius:50px;padding:5px 15px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange-deep);margin-bottom:clamp(8px,1.4vh,18px);
+  opacity:0;animation:up .6s ease .5s both;
+  width:fit-content;
+}
+.chip-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);}
+
+.h-serif-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(50px,6.5vw,100px);
+  font-weight:700;font-style:italic;
+  color:var(--orange);line-height:.88;letter-spacing:-1px;
+  margin-bottom:4px;
+  opacity:0;animation:up .8s ease .6s both;
+}
+.h-sans{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(26px,3.8vw,60px);
+  font-weight:800;color:var(--dark);line-height:1.0;letter-spacing:-1.5px;
+  margin-bottom:clamp(10px,2vh,22px);
+  opacity:0;animation:up .8s ease .7s both;
+}
+.h-sans em{color:var(--orange);font-style:normal;}
+
+.divider{display:flex;align-items:center;gap:9px;margin-bottom:clamp(10px,1.8vh,20px);opacity:0;animation:expandX .7s ease .82s both;transform-origin:left;}
+.divider-bar{width:44px;height:2px;background:linear-gradient(to right,var(--orange),var(--orange-light));border-radius:2px;}
+.divider-petal{font-size:13px;color:var(--orange-light);}
+
+.body{
+  font-size:clamp(13px,1.05vw,16px);font-weight:400;color:var(--muted);line-height:1.7;
+  max-width:520px;margin-bottom:clamp(12px,2vh,24px);
+  opacity:0;animation:up .6s ease .92s both;
+}
+.body strong{color:var(--dark);font-weight:700;}
+
+/* Benefits — compact */
+.benefits{display:flex;flex-direction:column;gap:7px;margin-bottom:clamp(12px,2vh,24px);opacity:0;animation:up .6s ease 1.02s both;}
+.benefit{
+  display:flex;align-items:center;gap:12px;
+  padding:9px 14px;
+  background:white;border:1px solid var(--orange-line);border-radius:10px;
+  box-shadow:0 2px 10px rgba(255,133,0,0.06);
+  transition:all .25s;
+}
+.benefit:hover{transform:translateX(4px);border-color:rgba(255,133,0,0.3);box-shadow:0 4px 18px rgba(255,133,0,0.12);}
+.benefit-icon{width:30px;height:30px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--orange),var(--orange-light));display:flex;align-items:center;justify-content:center;font-size:13px;}
+.benefit-title{font-size:12px;font-weight:700;color:var(--dark);}
+.benefit-desc{font-size:11px;color:var(--muted);line-height:1.4;}
+
+/* CTA */
+.cta-block{opacity:0;animation:up .6s ease 1.15s both;}
+.cta-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+
+.btn-big{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  color:white;
+  padding:clamp(14px,1.8vh,20px) clamp(20px,2.5vw,34px);
+  border-radius:14px;
+  box-shadow:0 10px 40px rgba(255,133,0,0.38);
+  cursor:pointer;transition:all .35s ease;
+  text-decoration:none;position:relative;overflow:hidden;
+  margin-bottom:10px;
+}
+.btn-big::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);pointer-events:none;}
+.btn-big::after{
+  content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,0.1),transparent);
+  animation:sweep 3.5s ease-in-out infinite 1.5s;
+}
+.btn-big:hover{transform:translateY(-3px);box-shadow:0 18px 55px rgba(255,133,0,0.50);}
+.btn-big-pretitle{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;opacity:.8;margin-bottom:3px;}
+.btn-big-title{font-size:clamp(14px,1.3vw,19px);font-weight:800;letter-spacing:.1px;}
+.btn-big-arrow{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;transition:transform .3s;
+}
+.btn-big:hover .btn-big-arrow{transform:translateX(4px);}
+
+.cta-sub{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:8px;}
+.cta-sub::before{content:'✿ ';color:var(--orange-light);}
+
+.urgency{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(255,133,0,0.07);border:1px solid rgba(255,133,0,0.18);
+  border-radius:8px;padding:8px 14px;
+}
+.urgency-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0;animation:blink 2s ease-in-out infinite;}
+.urgency-text{font-size:11px;font-weight:600;color:var(--mid);}
+
+/* RIGHT / PHOTO */
+.right{
+  position:relative;
+  background:linear-gradient(160deg,#fdf8f3 0%,#faeee0 50%,#f5dfc8 100%);
+  border-left:1px solid var(--orange-line);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.right::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,rgba(255,133,0,0.1) 1px,transparent 1px);
+  background-size:26px 26px;opacity:.6;
+}
+
+/* decorative arcs */
+.right::after{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:220px;height:220px;border-radius:50%;
+  border:40px solid rgba(255,133,0,0.08);
+  pointer-events:none;z-index:0;
+}
+
+.photo-wrap{flex:1;position:relative;overflow:hidden;min-height:200px;}
+
+/* Beautiful photo presentation */
+.photo-frame{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,transparent 55%,rgba(245,223,200,0.25) 100%);
+}
+.photo-wrap img{
+  position:absolute;bottom:0;left:50%;
+  transform:translateX(-50%);
+  height:100%;width:auto;
+  max-width:none;
+  object-fit:contain;object-position:bottom center;
+  mix-blend-mode:normal;
+  filter:contrast(1.02) saturate(1.0) brightness(1.03);
+  opacity:0;z-index:2;
+  animation:photoIn 1s cubic-bezier(.22,1,.36,1) .5s both;
+}
+.photo-glow{
+  position:absolute;bottom:0;left:10%;right:10%;height:30%;
+  background:radial-gradient(ellipse,rgba(255,133,0,0.10) 0%,transparent 70%);
+  pointer-events:none;z-index:3;filter:blur(20px);
+}
+.photo-fade{
+  position:absolute;bottom:0;left:0;right:0;height:20%;
+  background:linear-gradient(to top,rgba(245,223,200,0.4) 0%,transparent 100%);
+  pointer-events:none;z-index:4;
+}
+
+.right-bottom{
+  position:relative;z-index:5;
+  border-top:1px solid rgba(255,133,0,0.2);
+  background:rgba(255,252,248,0.95);backdrop-filter:blur(10px);
+  padding:clamp(14px,2vh,22px) clamp(14px,1.8vw,26px);
+  display:flex;flex-direction:column;gap:10px;
+  opacity:0;animation:up .7s ease 1s both;
+}
+.name-sig{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,1.8vw,26px);font-weight:700;font-style:italic;
+  color:var(--dark);margin-bottom:7px;line-height:1.15;
+}
+.chips-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tc{
+  background:rgba(255,133,0,0.08);border:1px solid rgba(255,133,0,0.22);
+  border-radius:4px;padding:3px 9px;
+  font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange-deep);
+}
+
+.testimonial{
+  background:rgba(255,133,0,0.04);border:1px solid rgba(255,133,0,0.12);
+  border-radius:10px;padding:11px 13px;
+}
+.test-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(12px,1vw,15px);font-style:italic;color:var(--mid);line-height:1.55;margin-bottom:8px;
+}
+.test-author{display:flex;align-items:center;gap:9px;}
+.test-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--orange-light));
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:white;flex-shrink:0;
+}
+.test-name{font-size:11px;font-weight:700;color:var(--dark);}
+.test-role{font-size:9px;color:var(--muted);letter-spacing:.5px;}
+
+/* STATS BAR */
+.stats{
+  display:flex;align-items:center;justify-content:space-around;
+  border-top:1px solid var(--orange-line);
+  background:rgba(255,251,245,0.95);backdrop-filter:blur(10px);
+  padding:0 clamp(20px,4vw,72px);
+}
+.stat{display:flex;align-items:center;gap:9px;}
+.stat-icon{font-size:16px;}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(17px,1.8vw,24px);font-weight:700;color:var(--orange);line-height:1;
+}
+.stat-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* QR block */
+.qr-block{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 12px;
+  background:white;
+  border:1px solid var(--orange-line);
+  border-radius:10px;
+  box-shadow:0 2px 10px rgba(255,133,0,0.06);
+}
+.qr-wrap{
+  width:62px;height:62px;flex-shrink:0;
+  border-radius:7px;overflow:hidden;
+  border:2px solid rgba(255,133,0,0.25);
+  background:white;
+  display:flex;align-items:center;justify-content:center;
+}
+.qr-wrap canvas{width:58px!important;height:58px!important;}
+.qr-label{font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;}
+.qr-sub{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+
+/* tagline */
+.tagline{margin-top:clamp(8px,1.4vh,16px);font-size:11px;color:var(--muted);letter-spacing:1px;font-style:italic;opacity:0;animation:up .5s ease 1.3s both;}
+.tagline-heart{color:var(--orange);font-style:normal;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  html,body{overflow:auto;}
+  .page{height:auto;grid-template-rows:auto 1fr auto;overflow:visible;}
+  .hero{grid-template-columns:1fr;}
+  .right{border-left:none;border-top:1px solid var(--orange-line);min-height:55vw;}
+  .photo-wrap img{height:55vw;position:static;transform:none;margin:0 auto;display:block;}
+  .photo-wrap{min-height:55vw;}
+  .stats{flex-wrap:wrap;padding:12px 20px;}
+  .stat{flex:1 1 45%;padding:10px 0;border-bottom:1px solid var(--orange-line);}
+  header{padding:10px 18px;}
+  .pill{display:none;}
+  .left{padding:28px 18px;}
+}
+</style>
+</head>
+<body>
+<div class="blob1"></div>
+<div class="blob2"></div>
+
+<div class="page">
+
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-mark">♥</div>
+      <div>
+        <div class="logo-name">Empresarias Creativas</div>
+        <div class="logo-sub">Con Propósito · ECP</div>
+      </div>
+    </div>
+    <div class="pill">✦ &nbsp;Lista de Espera · Plazas Limitadas &nbsp;✦</div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      <div class="live-text">Inscripciones Abiertas</div>
+    </div>
+  </header>
+
+  <div class="hero">
+
+    <!-- LEFT -->
+    <div class="left">
+      <div class="orn">
+        <div class="orn-rule"></div>
+        <div class="orn-text">Mentoría Exclusiva · Transformación Total</div>
+        <div class="orn-rule-r"></div>
+      </div>
+
+      <div class="chip"><div class="chip-dot"></div>Mentoría Exclusiva<div class="chip-dot"></div></div>
+      <div class="h-serif-big">Mentoría</div>
+      <div class="h-sans">Vida y <em>Negocio</em> Creativo</div>
+      <div class="divider"><div class="divider-bar"></div><div class="divider-petal">✿</div></div>
+
+      <p class="body">
+        Únete a la <strong>lista de espera</strong> y transforma tu vida y negocio.<br>
+        Diseñada para emprendedoras que quieren vivir con <strong>propósito, estrategia y creatividad.</strong>
+      </p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">🌱</div>
+          <div>
+            <div class="benefit-title">Propósito y claridad</div>
+            <div class="benefit-desc">Descubre tu misión y alinea tu negocio con tus valores.</div>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">✨</div>
+          <div>
+            <div class="benefit-title">Estrategia creativa</div>
+            <div class="benefit-desc">Herramientas reales para crecer con autenticidad.</div>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">💛</div>
+          <div>
+            <div class="benefit-title">Comunidad de mujeres</div>
+            <div class="benefit-desc">Rodéate de emprendedoras que se apoyan e inspiran.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-block">
+        <div class="cta-label">¿Lista para transformar tu vida?</div>
+        <a class="btn-big" href="https://forms.gle/HPo8azkJyyzjYpJq5" target="_blank">
+          <div>
+            <div class="btn-big-pretitle">Lista de espera · Plazas limitadas</div>
+            <div class="btn-big-title">🎯 &nbsp;¡Reserva tu lugar ahora!</div>
+          </div>
+          <div class="btn-big-arrow">→</div>
+        </a>
+        <div class="cta-sub">Más que una mentoría — es una transformación de vida.</div>
+        <div class="urgency">
+          <div class="urgency-dot"></div>
+          <div class="urgency-text">Las plazas son limitadas · Únete hoy a la lista de espera</div>
+        </div>
+      </div>
+
+      <div class="tagline"><span class="tagline-heart">♥</span> &nbsp;Más que una mentoría — es una transformación de vida.</div>
+    </div>
+
+    <!-- RIGHT / FOTO -->
+    <div class="right">
+      <div class="photo-wrap">
+        <div class="photo-frame"></div>
+        <img id="mayuri-photo" src="mayuri.png" alt="Mayuri Hidalgo" />
+        <div class="photo-glow"></div>
+        <div class="photo-fade"></div>
+      </div>
+      <div class="right-bottom">
+        <div>
+          <div class="name-sig">Mayuri Hidalgo</div>
+          <div class="chips-row">
+            <span class="tc">CEO Equipo Creativo</span>
+            <span class="tc">Fundadora ECP</span>
+            <span class="tc">Mentora de Vida y Negocio</span>
+            <span class="tc">Conferencista</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  const img = document.getElementById('mayuri-photo');
+  img.onerror = function(){ this.onerror=null; this.src='mayuli.png'; };
+
+  // Generate QR code
+  new QRCode(document.getElementById("qrCanvas"), {
+    text: "https://forms.gle/HPo8azkJyyzjYpJq5",
+    width: 116,
+    height: 116,
+    colorDark: "#c85f00",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+</script>
+</body>
+</html>
