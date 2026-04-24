@@ -271,6 +271,52 @@ footer a:hover{color:var(--pink)}
   .btn-glow,.btn-wht{width:100%;max-width:290px;justify-content:center}
   .btn-buy{width:100%;max-width:320px;justify-content:center;font-size:.95rem}
 }
+
+/* ── FORMAS DE PAGO ── */
+#pagos{padding:100px 40px;background:linear-gradient(180deg,#fff 0%,#FFF7FB 100%)}
+.pagos-inner{max-width:900px;margin:0 auto}
+.pagos-head{text-align:center;margin-bottom:56px}
+.pagos-eyebrow{display:inline-block;font-size:.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;padding:0 20px;position:relative}
+.pagos-eyebrow::before,.pagos-eyebrow::after{content:"";position:absolute;top:50%;width:28px;height:1px;background:var(--pink-soft)}
+.pagos-eyebrow::before{right:100%;margin-right:-20px}.pagos-eyebrow::after{left:100%;margin-left:-20px}
+.pagos-title{font-family:'Genty',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#f68532;margin-bottom:12px;line-height:1.2}
+.pagos-desc{font-size:.95rem;color:var(--mid);max-width:480px;margin:0 auto;line-height:1.7}
+
+.pagos-method-single{text-align:center;background:linear-gradient(135deg,rgba(255,45,139,.06),rgba(255,122,26,.04));border:1px solid rgba(255,45,139,.15);border-radius:20px;padding:30px 28px;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
+.pagos-method-single .pago-icon{font-size:2.2rem;display:block;margin-bottom:12px}
+.pagos-method-single h3{font-family:'Genty',sans-serif;font-size:1.5rem;font-weight:400;color:var(--pink);margin-bottom:8px}
+.pagos-method-single p{font-size:.88rem;color:var(--mid);line-height:1.6}
+.bank-logo-wrap{width:52px;height:52px;background:#fff;border-radius:12px;border:1px solid rgba(255,45,139,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;padding:6px}
+.bank-logo-wrap img{width:100%;height:100%;object-fit:contain;display:block}
+
+.pagos-accounts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px}
+.account-card{background:#fff;border:1.5px solid rgba(255,45,139,.14);border-radius:22px;padding:24px 20px;display:flex;flex-direction:column;gap:10px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;position:relative;overflow:hidden}
+.account-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.account-card:nth-child(1)::before{background:var(--pink)}
+.account-card:nth-child(2)::before{background:var(--orange)}
+.account-card:nth-child(3)::before{background:linear-gradient(90deg,var(--pink),var(--orange))}
+.account-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(255,45,139,.1)}
+.account-header{display:flex;align-items:center;gap:12px}
+
+.bank-name{font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--light)}
+.account-type{font-size:.72rem;color:var(--light);margin-top:2px}
+.account-holder{font-size:.88rem;font-weight:700;color:var(--dark)}
+.account-number{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:1px}
+.account-card:nth-child(1) .account-number{color:var(--pink)}
+.account-card:nth-child(2) .account-number{color:var(--orange)}
+.account-card:nth-child(3) .account-number{background:linear-gradient(90deg,var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.pagos-cedula{text-align:center;padding:16px 24px;background:var(--pink-pale);border:1px dashed rgba(255,45,139,.3);border-radius:16px;font-size:.88rem;color:var(--mid);margin-bottom:28px}
+.pagos-cedula strong{color:var(--dark);font-size:.95rem}
+
+
+.pagos-importante{background:linear-gradient(135deg,rgba(255,45,139,.05),rgba(255,122,26,.04));border:1px solid rgba(255,45,139,.18);border-left:4px solid var(--pink);border-radius:18px;padding:24px 26px}
+.imp-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--pink);margin-bottom:8px;display:block}
+.pagos-importante p{font-size:.9rem;color:var(--mid);line-height:1.7}
+.imp-example{margin-top:10px;background:#fff;border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--mid);border:1px solid rgba(255,45,139,.12);display:inline-block}
+.imp-example strong{color:var(--dark)}
+
+@media(max-width:900px){#pagos{padding:70px 20px}.pagos-accounts{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -286,6 +332,7 @@ footer a:hover{color:var(--pink)}
 <nav id="mainNav">
   <div class="nav-logo">Journaling <span>& Planner</span></div>
   <div class="nav-pill"><span></span> ¡Ya disponible!</div>
+  <a href="#pagos" style="font-size:.78rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--pink)'" onmouseout="this.style.color='var(--mid)'">Pago</a>
   <a href="https://buy.stripe.com/14A28q2EE7MG3RZc7F67S0w" target="_blank" rel="noopener" class="nav-cta">Comprar ahora ✦</a>
 </nav>
 
@@ -370,6 +417,81 @@ footer a:hover{color:var(--pink)}
         <div class="trust-item"><span>📲</span> Soporte por WhatsApp</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── FORMAS DE PAGO ── -->
+<section id="pagos">
+  <div class="pagos-inner">
+
+    <div class="pagos-head reveal">
+      <span class="pagos-eyebrow">Formas de pago</span>
+      <h2 class="pagos-title">¿Cómo adquirir tu Planner?</h2>
+      <p class="pagos-desc">Elige el método que más te convenga para recibir tu Journaling y Planner Creativo en la puerta de tu casa.</p>
+    </div>
+
+    <!-- Método único: transferencia -->
+    <div class="pagos-method-single reveal">
+      <div class="pago-num">💳</div>
+      <h3>Transferencia bancaria</h3>
+      <p>Realiza tu pago a cualquiera de las siguientes cuentas y envíanos tu comprobante por WhatsApp.</p>
+    </div>
+
+    <!-- Cuentas bancarias -->
+    <div class="pagos-accounts">
+      <div class="account-card reveal">
+        <div class="account-header">
+          <div class="bank-logo-wrap">
+            <img src="popular.png" alt="Banco Popular">
+          </div>
+          <div>
+            <div class="bank-name">Banco Popular</div>
+            <div class="account-type">Cta. Ahorro</div>
+          </div>
+        </div>
+        <div class="account-holder">Mayuri Hidalgo</div>
+        <div class="account-number">679113647</div>
+      </div>
+      <div class="account-card reveal">
+        <div class="account-header">
+          <div class="bank-logo-wrap">
+            <img src="banreservas.svg" alt="Banco de Reservas">
+          </div>
+          <div>
+            <div class="bank-name">Banco Reservas</div>
+            <div class="account-type">Cta. Ahorro</div>
+          </div>
+        </div>
+        <div class="account-holder">Mayuri Hidalgo</div>
+        <div class="account-number">5100101679</div>
+      </div>
+      <div class="account-card reveal">
+        <div class="account-header">
+          <div class="bank-logo-wrap">
+            <img src="asociacion.png" alt="Asociación Popular">
+          </div>
+          <div>
+            <div class="bank-name">Asociación Popular</div>
+            <div class="account-type">de Ahorros · Cta. Ahorro</div>
+          </div>
+        </div>
+        <div class="account-holder">Mayuri Hidalgo</div>
+        <div class="account-number">1024839893</div>
+      </div>
+    </div>
+
+    <!-- Cédula -->
+    <div class="pagos-cedula reveal">
+      Cédula: <strong>001-1395020-8</strong>
+    </div>
+
+    <!-- Nota importante -->
+    <div class="pagos-importante reveal">
+      <span class="imp-label">⚠ Importante</span>
+      <p>Al realizar tu transferencia, coloca una nota con tu nombre completo y el producto que estás comprando para confirmar tu pedido rápidamente.</p>
+      <div class="imp-example">Ej: <strong>María López — Journaling y Planner Creativo</strong></div>
+    </div>
+
   </div>
 </section>
 
