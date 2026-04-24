@@ -16,7 +16,9 @@
 }
 :root{
   --pink:#FF2D8B;--pink-soft:#FFB8D9;--pink-pale:#FFF0F7;
-  --orange:#FF7A1A;--dark:#1A0A0F;--mid:#5A1F35;--light:#C47090;
+  --orange:#FF7A1A;--dark:#1A0A0F;--mid:#5A1F35;--light:#C47090;  --ws: #25D366;
+  --ws-dark: #1ebe5d;
+
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
@@ -208,11 +210,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:16px 48px;display:fl
   display:flex;
   align-items:center;
   gap:12px;
-  background:linear-gradient(135deg,var(--pink),#e0247a);
+
+  background:linear-gradient(135deg,#25D366,#1ebe5d); /* FIX */
+
   color:#fff;
   border-radius:100px;
   padding:14px 22px;
-  box-shadow:0 8px 32px rgba(255,45,139,.5),0 2px 0 rgba(255,255,255,.15) inset;
+  box-shadow:0 8px 32px rgba(37,211,102,.5),0 2px 0 rgba(255,255,255,.15) inset;
   text-decoration:none;
   font-size:.88rem;
   font-weight:600;
@@ -220,26 +224,39 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:16px 48px;display:fl
   transition:all .35s cubic-bezier(.34,1.56,.64,1);
   animation:waGlow 3s ease-in-out infinite;
 }
+
 .wa-float:hover{
   transform:translateY(-4px) scale(1.05);
-  box-shadow:0 14px 44px rgba(255,45,139,.7);
+  box-shadow:0 14px 44px rgba(37,211,102,.7);
 }
+
 .wa-float svg{
   flex-shrink:0;
   width:22px;
   height:22px;
   fill:#fff;
 }
+
 .wa-float-label{white-space:nowrap}
+
 @keyframes waGlow{
-  0%,100%{box-shadow:0 8px 32px rgba(255,45,139,.5),0 2px 0 rgba(255,255,255,.15) inset}
-  50%{box-shadow:0 8px 44px rgba(255,45,139,.8),0 2px 0 rgba(255,255,255,.15) inset}
-}
-@media(max-width:480px){
-  .wa-float{padding:13px 16px;border-radius:50%;bottom:20px;right:20px}
-  .wa-float-label{display:none}
+  0%,100%{
+    box-shadow:0 8px 32px rgba(37,211,102,.5),0 2px 0 rgba(255,255,255,.15) inset
+  }
+  50%{
+    box-shadow:0 8px 44px rgba(37,211,102,.8),0 2px 0 rgba(255,255,255,.15) inset
+  }
 }
 
+@media(max-width:480px){
+  .wa-float{
+    padding:13px 16px;
+    border-radius:50%;
+    bottom:20px;
+    right:20px
+  }
+  .wa-float-label{display:none}
+}
 footer{background:#0D0509;padding:36px 60px;text-align:center;color:rgba(255,255,255,.35);font-size:.8rem}
 footer a{color:var(--pink-soft);text-decoration:none}
 footer a:hover{color:var(--pink)}
