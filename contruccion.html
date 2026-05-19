@@ -656,11 +656,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:72px 28px 40px
     <div class="nav-links">
       <a href="#nosotras">Nosotras</a>
       <a href="#historia">Nuestros Eventos</a>
-      <a href="#proximo-evento">ECP 2026</a>
-      <a href="#tickets">Boletas</a>
-      <a href="#pagos">Pago</a>
+      <a href="#proximo-evento">VC 360</a>
+      <a href="journaling.html">Creativas Shop</a>
+      <a href="Mentoria.html">Mentoría</a>
     </div>
-    <a href="#tickets" class="btn btn--pink btn--sm nav-cta">Reservar ✦</a>
+    <a href="https://wa.me/18495179040?text=QUIERO%20IR" class="btn btn--orange btn--sm nav-cta">¡Sí, lo quiero! ✦</a>
     <div class="nav-hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -669,10 +669,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:72px 28px 40px
 <div class="nav-mobile" id="navMobile">
   <a href="#nosotras">Nosotras</a>
   <a href="#historia">Nuestros Eventos</a>
-  <a href="#proximo-evento">ECP 2026</a>
-  <a href="#tickets">Boletas</a>
-  <a href="#pagos">Pago</a>
-  <a href="#tickets" class="btn btn--pink btn--sm" style="width:100%;justify-content:center">Reservar ✦</a>
+  <a href="#proximo-evento">VC 360</a>
+  <a href="journaling.html">Creativas Shop</a>
+  <a href="Mentoria.html">Mentoría</a>
+  <a href="https://wa.me/18495179040?text=QUIERO%20IR" class="btn btn--orange btn--sm" style="width:100%;justify-content:center">¡Sí, lo quiero! ✦</a>
 </div>
 
 <!-- ═══ HERO ═══════════════════════════════════════════════ -->
@@ -708,14 +708,14 @@ footer{background:#fff;border-top:1px solid var(--border);padding:72px 28px 40px
 
     <!-- Chips de info -->
     <div class="hero-chips">
-      <div class="hero-chip">✦ 4 Ediciones Realizadas</div>
+      <div class="hero-chip">✦ 3 Ediciones Realizadas</div>
       <div class="hero-chip">👥 +750 Vidas Transformadas</div>
-      <div class="hero-chip">📍 San Cristóbal, RD</div>
+      <div class="hero-chip">📍 Santo Domingo, RD</div>
     </div>
 
     <!-- Botones -->
     <div class="hero-btns">
-      <a href="#proximo-evento" class="btn btn--pink">Ver ECP 2026 ✦</a>
+      <a href="#proximo-evento" class="btn btn--pink">Ventas Creativas 360 ✦</a>
       <a href="#historia" class="btn btn--ghost">Nuestra Historia</a>
     </div>
 
@@ -732,7 +732,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:72px 28px 40px
 <div class="stats-strip">
   <div class="stats-grid">
     <div class="stat-item reveal">
-      <strong class="stat-num">4</strong>
+      <strong class="stat-num">3</strong>
       <span class="stat-label">Ediciones Realizadas</span>
     </div>
     <div class="stat-item reveal d1">
@@ -833,514 +833,474 @@ footer{background:#fff;border-top:1px solid var(--border);padding:72px 28px 40px
 
 <!-- ═══ HISTORIA / EVENTOS PASADOS ═══════════════════════════ -->
 <style>
-/* ── Historia section ── */
-.historia-section { background: var(--cream); padding: 100px 28px; }
-.historia-inner { max-width: 1280px; margin: 0 auto; }
-
-/* Cada edición: layout split info + reels */
-.edition-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
-  margin-bottom: 80px;
-  padding-bottom: 80px;
-  border-bottom: 1px solid var(--border);
+/* ── REELS SECTION ── */
+.reels-section {
+  background: var(--cream);
+  padding: 110px 28px;
 }
-.edition-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.reels-section .section-header.centered {
+  max-width: 680px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.section-label {
+  display: inline-block;
+  font-size: 0.6rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 4px; color: var(--pink);
+  margin-bottom: 14px;
+}
 
-/* Alternar layout izq/der */
-.edition-block.flip { direction: rtl; }
-.edition-block.flip > * { direction: ltr; }
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
 
-/* Tarjeta de info */
-.edition-info {
+/* Card */
+.reel-card {
   background: #fff;
-  border-radius: 32px;
+  border-radius: 22px;
   border: 1px solid var(--border);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s;
+}
+.reel-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.10);
+}
+
+/* Header row */
+.reel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 15px;
+  border-bottom: 1px solid var(--border);
+}
+.reel-tag {
+  font-size: 0.55rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--muted);
+}
+.reel-year {
+  font-size: 0.6rem; font-weight: 900;
+  padding: 3px 11px; border-radius: 100px;
+  background: var(--pink); color: #fff;
+}
+
+/* Title */
+.reel-title {
+  padding: 10px 15px;
+  font-size: 0.85rem; font-weight: 700;
+  color: var(--text); line-height: 1.35;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Embed */
+.reel-embed {
   position: relative;
-  transition: box-shadow 0.35s;
+  flex: 1;
+  min-height: 460px;
+  background: var(--cream);
+  overflow: hidden;
 }
-.edition-info:hover { box-shadow: 0 20px 56px rgba(0,0,0,0.07); }
-
-.edition-info-bar { height: 6px; }
-.ev-orange .edition-info-bar { background: linear-gradient(90deg, var(--orange), var(--pink)); }
-.ev-pink   .edition-info-bar { background: linear-gradient(90deg, var(--pink), var(--orange)); }
-.ev-aqua   .edition-info-bar { background: linear-gradient(90deg, var(--aqua), var(--pink)); }
-
-.edition-info-body { padding: 32px 32px 28px; }
-
-.edition-year-ghost {
-  font-family: var(--font-display);
-  font-size: 7rem; line-height: 1;
-  position: absolute; top: 6px; right: 20px;
-  pointer-events: none;
-  opacity: 0.05; color: var(--text);
-}
-
-.edition-vol-tag { margin-bottom: 12px; }
-.edition-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  color: var(--pink); line-height: 1.05; margin-bottom: 6px;
-}
-.ev-orange .edition-title { color: var(--orange); }
-.ev-aqua   .edition-title { color: var(--aqua); }
-
-.edition-sub {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: 1rem; color: var(--muted); margin-bottom: 22px;
-}
-
-.edition-stats-row {
-  display: flex; gap: 0;
-  border: 1px solid var(--border); border-radius: 16px;
-  overflow: hidden; margin-bottom: 22px;
-}
-.edition-stat-box {
-  flex: 1; text-align: center; padding: 16px 12px;
-  border-right: 1px solid var(--border);
-}
-.edition-stat-box:last-child { border-right: none; }
-.edition-stat-box strong {
-  display: block;
-  font-family: var(--font-display); font-size: 1.8rem; line-height: 1;
-  color: var(--pink); margin-bottom: 4px;
-}
-.ev-orange .edition-stat-box strong { color: var(--orange); }
-.ev-aqua   .edition-stat-box strong { color: var(--aqua); }
-.edition-stat-box span {
-  font-size: 0.57rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1.5px; color: var(--muted);
-}
-
-.edition-desc {
-  font-size: 0.88rem; color: var(--muted);
-  line-height: 1.75; margin-bottom: 24px;
-}
-
-.edition-highlights { display: flex; flex-wrap: wrap; gap: 8px; }
-.edition-highlight {
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; padding: 6px 14px; border-radius: 100px;
-  border: 1px solid var(--border); color: var(--muted);
-  transition: all 0.2s;
-}
-.edition-highlight:hover { border-color: var(--pink); color: var(--pink); }
-
-/* Columna de reels */
-.edition-reels-col {
-  display: flex; flex-direction: column; gap: 20px;
-}
-.edition-reels-label {
-  font-size: 0.62rem; font-weight: 900; text-transform: uppercase;
-  letter-spacing: 3px; color: var(--muted); margin-bottom: 4px;
-  display: flex; align-items: center; gap: 8px;
-}
-.edition-reels-label::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
-}
-.edition-reels-grid {
-  display: grid; gap: 14px;
-}
-.edition-reels-grid.one   { grid-template-columns: 1fr; }
-.edition-reels-grid.two   { grid-template-columns: 1fr 1fr; }
-
-/* Reel wrapper — formato 9:16 vertical */
-.reel-card {
-  border-radius: 20px; overflow: hidden;
-  background: var(--dark);
-  position: relative;
-  aspect-ratio: 9 / 16;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
-  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
-}
-.reel-card:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 20px 48px rgba(0,0,0,0.22); }
-.reel-card iframe {
+.reel-embed iframe {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   border: none;
 }
 
-@media (max-width: 900px) {
-  .edition-block, .edition-block.flip {
-    grid-template-columns: 1fr;
-    direction: ltr;
-  }
-  .edition-reels-grid.two { grid-template-columns: 1fr 1fr; }
+/* Responsive */
+@media (max-width: 1300px) {
+  .reels-grid { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 500px) {
-  .edition-reels-grid.two { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .reels-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .reels-grid { grid-template-columns: 1fr; }
+  .reels-section { padding: 80px 20px; }
+  .reel-embed { min-height: 380px; }
 }
 </style>
 
-<section class="historia-section" id="historia">
-  <div class="historia-inner">
-    <div class="section-header centered" style="margin-bottom:64px">
-      <span class="eyebrow reveal">Nuestra trayectoria</span>
-      <h2 class="section-title reveal d1">Cada Edición,<br>Una Historia</h2>
-      <p class="section-desc reveal d2">Tres ediciones. Cientos de empresarias transformadas. Una comunidad que sigue creciendo.</p>
-    </div>
 
-    <!-- ── VOL. 3 · 2025 (más reciente) ── -->
-    <div class="edition-block ev-orange reveal">
-      <div class="edition-info">
-        <div class="edition-info-bar"></div>
-        <div class="edition-info-body">
-          <span class="edition-year-ghost">2025</span>
-          <span class="tag tag--orange edition-vol-tag">Vol. 3.0 · 2025</span>
-          <h3 class="edition-title">Prosperar en Grande</h3>
-          <p class="edition-sub">La edición más grande hasta la fecha</p>
-          <div class="edition-stats-row">
-            <div class="edition-stat-box"><strong>+300</strong><span>Asistentes</span></div>
-            <div class="edition-stat-box"><strong>12</strong><span>Speakers</span></div>
-            <div class="edition-stat-box"><strong>6h</strong><span>Contenido</span></div>
-            <div class="edition-stat-box"><strong>3ra</strong><span>Edición</span></div>
-          </div>
-          <p class="edition-desc">La edición más grande hasta la fecha. Paneles de alto impacto, mentorías en vivo, podcast con invitados especiales y un cierre exclusivo VIP que marcó un antes y un después para toda la comunidad ECP.</p>
-          <div class="edition-highlights">
-            <span class="edition-highlight">🎙 Podcast en Vivo</span>
-            <span class="edition-highlight">⚡ Mentoría en Vivo</span>
-            <span class="edition-highlight">✦ Cierre VIP</span>
-            <span class="edition-highlight">🎭 Meet & Greet</span>
-            <span class="edition-highlight">🏆 ExpoCreativa</span>
-          </div>
-        </div>
-      </div>
-      <div class="edition-reels-col reveal d1">
-        <p class="edition-reels-label">Momentos Vol. 3</p>
-        <div class="edition-reels-grid two">
-          <div class="reel-card">
-            <iframe src="https://www.instagram.com/reel/DGqVE6bp4wa/embed" loading="lazy"></iframe>
-          </div>
-          <div class="reel-card">
-            <iframe src="https://www.instagram.com/reel/DVJXx7oDqgN/embed" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ── VOL. 2 · 2023 ── -->
-    <div class="edition-block ev-pink flip reveal">
-      <div class="edition-info">
-        <div class="edition-info-bar"></div>
-        <div class="edition-info-body">
-          <span class="edition-year-ghost">2023</span>
-          <span class="tag tag--pink edition-vol-tag">Vol. 2.0 · 2023</span>
-          <h3 class="edition-title">Crecer con Propósito</h3>
-          <p class="edition-sub">La comunidad se multiplica</p>
-          <div class="edition-stats-row">
-            <div class="edition-stat-box"><strong>+200</strong><span>Asistentes</span></div>
-            <div class="edition-stat-box"><strong>8</strong><span>Speakers</span></div>
-            <div class="edition-stat-box"><strong>2da</strong><span>Edición</span></div>
-          </div>
-          <p class="edition-desc">La segunda edición demostró que el movimiento ECP era real y permanente. La comunidad creció, las historias se multiplicaron y la transformación empresarial se hizo más profunda y tangible.</p>
-          <div class="edition-highlights">
-            <span class="edition-highlight">📢 Conferencias</span>
-            <span class="edition-highlight">🤝 Networking</span>
-            <span class="edition-highlight">💼 Paneles de Negocio</span>
-            <span class="edition-highlight">🌟 Comunidad Real</span>
-          </div>
-        </div>
-      </div>
-      <div class="edition-reels-col reveal d1">
-        <p class="edition-reels-label">Momentos Vol. 2</p>
-        <div class="edition-reels-grid one">
-          <div class="reel-card">
-            <iframe src="https://www.instagram.com/reel/C25pJIxJF95/embed" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ── VOL. 1 · 2022 ── -->
-    <div class="edition-block ev-aqua reveal">
-      <div class="edition-info">
-        <div class="edition-info-bar"></div>
-        <div class="edition-info-body">
-          <span class="edition-year-ghost">2022</span>
-          <span class="tag tag--aqua edition-vol-tag">Vol. 1.0 · 2022</span>
-          <h3 class="edition-title">El Inicio de un Sueño</h3>
-          <p class="edition-sub">Donde todo comenzó</p>
-          <div class="edition-stats-row">
-            <div class="edition-stat-box"><strong>+150</strong><span>Asistentes</span></div>
-            <div class="edition-stat-box"><strong>6</strong><span>Speakers</span></div>
-            <div class="edition-stat-box"><strong>1ra</strong><span>Edición</span></div>
-          </div>
-          <p class="edition-desc">La primera edición que demostró que San Cristóbal necesitaba un espacio para las empresarias creativas. Nació la comunidad, nació el sueño, nació un movimiento que no para de crecer.</p>
-          <div class="edition-highlights">
-            <span class="edition-highlight">🌱 El origen</span>
-            <span class="edition-highlight">💡 Primera vez</span>
-            <span class="edition-highlight">❤️ Con propósito</span>
-            <span class="edition-highlight">🚀 San Cristóbal</span>
-          </div>
-        </div>
-      </div>
-      <div class="edition-reels-col reveal d1">
-        <p class="edition-reels-label">Momentos Vol. 1</p>
-        <div class="edition-reels-grid one">
-          <div class="reel-card">
-            <iframe src="https://www.instagram.com/reel/Cnc8s1HIQS8/embed" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ═══ PRÓXIMO EVENTO — VENTAS CREATIVAS 360 ════════════════ -->
+<style>
+/* ══ VC360 SPLIT-SCREEN ══════════════════════════════════════ */
+.vc360-section {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0500;
+  overflow: hidden;
+}
 
+/* ── Panel izquierdo (contenido) ── */
+.vc360-left {
+  position: relative;
+  flex: 0 0 52%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 80px 60px;
+  overflow: hidden;
+  text-align: left;
+  align-items: flex-start;
+}
+.vc360-left-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 0% 30%, rgba(255,152,0,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(255,90,0,0.08) 0%, transparent 55%);
+}
+.vc360-left-inner { position: relative; z-index: 1; }
+
+/* ── Panel derecho (imagen) ── */
+.vc360-right {
+  flex: 0 0 48%;
+  position: relative;
+  overflow: hidden;
+}
+.vc360-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+/* Fade suave a la izquierda para integrar con el panel de contenido */
+.vc360-right-fade {
+  position: absolute; top: 0; left: 0; bottom: 0; width: 140px;
+  background: linear-gradient(to right, #0a0500 0%, transparent 100%);
+  pointer-events: none;
+}
+/* Card de precio — ahora en el panel izquierdo */
+.vc360-img-card {
+  display: flex; align-items: center; gap: 20px;
+  background: rgba(255,152,0,0.06);
+  border: 1px solid rgba(255,152,0,0.22);
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin-top: 20px;
+  width: 100%;
+}
+.vc360-img-card-date {
+  font-size: 0.78rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--orange); flex: 1;
+}
+.vc360-img-card-price {
+  font-family: var(--font-serif); font-size: 1.9rem; font-weight: 700; color: #fff;
+  white-space: nowrap;
+}
+.vc360-img-card-cta {
+  background: var(--orange); color: #fff;
+  border-radius: 100px; padding: 11px 24px;
+  font-size: 0.85rem; font-weight: 900; text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.vc360-img-card-cta:hover { background: var(--pink); }
+
+/* ── Textos ── */
+.vc360-label {
+  display: block; margin-bottom: 16px;
+  font-size: 0.6rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 4px; color: var(--orange);
+}
+.vc360-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 6.5vw, 7rem);
+  line-height: 1; color: #fff;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.vc360-title em { color: var(--orange); font-style: normal; }
+.vc360-sub {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  color: rgba(255,255,255,0.45); margin-bottom: 30px;
+}
+
+/* Fecha badge */
+.vc360-date {
+  display: inline-flex; align-items: stretch;
+  background: #0d0d0d;
+  border: 1px solid rgba(255,152,0,0.30);
+  border-radius: 18px; overflow: hidden;
+  margin-bottom: 28px;
+}
+.vc360-date-num-col {
+  padding: 16px 22px; text-align: center;
+  border-right: 1px solid rgba(255,152,0,0.15);
+}
+.vc360-date-day { display: block; font-size: 0.55rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); }
+.vc360-date-big { display: block; font-family: var(--font-display); font-size: 3.4rem; line-height: 1; color: var(--orange); }
+.vc360-date-mes { display: block; font-size: 0.55rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); }
+.vc360-date-info {
+  padding: 16px 20px; display: flex; flex-direction: column;
+  justify-content: center; gap: 7px;
+}
+.vc360-date-info span {
+  font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.75);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* Countdown integrado */
+.vc360-cd-lbl {
+  font-size: 0.56rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 3px; color: rgba(255,255,255,0.28);
+  margin-bottom: 14px; display: block;
+}
+.vc360-countdown-wrap { margin-bottom: 28px; }
+.vc360-countdown-wrap .cd-box { background: rgba(255,152,0,0.07); border-color: rgba(255,152,0,0.15); border-radius: 14px; }
+.vc360-countdown-wrap .cd-num { color: var(--orange); }
+
+/* Learn bullets */
+.vc360-learn-lbl {
+  font-size: 0.56rem; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--orange); margin-bottom: 12px; display: block;
+}
+.vc360-learn {
+  list-style: none; display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 24px;
+}
+.vc360-learn li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.88rem; color: rgba(255,255,255,0.78); line-height: 1.45;
+}
+.vc360-learn li::before {
+  content: '→'; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 1px;
+}
+
+/* Features */
+.vc360-feats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.vc360-feat {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,152,0,0.06);
+  border: 1px solid rgba(255,152,0,0.20);
+  border-radius: 100px; padding: 7px 16px;
+  font-size: 0.7rem; font-weight: 700;
+  color: rgba(255,255,255,0.70);
+}
+
+/* Speakers row */
+.vc360-spks-row {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px;
+}
+.vc360-spk-chip {
+  display: flex; align-items: center; gap: 9px;
+  background: rgba(255,152,0,0.06);
+  border: 1px solid rgba(255,152,0,0.14);
+  border-radius: 100px; padding: 7px 14px 7px 7px;
+}
+.vc360-spk-av {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.8rem; color: #fff;
+}
+.vc360-spk-name { font-size: 0.75rem; font-weight: 800; color: #fff; }
+
+/* CTA */
+.vc360-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .vc360-section { flex-direction: column; min-height: auto; }
+  .vc360-right {
+    flex: none;
+    height: 60vw;
+    max-height: 480px;
+    width: 100%;
+  }
+  .vc360-right-fade {
+    width: auto;
+    left: 0; right: 0; top: auto;
+    height: 80px;
+    bottom: 0;
+    background: linear-gradient(to top, #0a0500 0%, transparent 100%);
+  }
+  .vc360-left { flex: none; padding: 60px 32px; }
+}
+@media (max-width: 480px) {
+  .vc360-left { padding: 52px 22px; }
+  .vc360-right { height: 75vw; }
+  .vc360-date { flex-direction: column; }
+  .vc360-date-num-col { border-right: none; border-bottom: 1px solid rgba(255,152,0,0.15); }
+  .vc360-img-card { flex-wrap: wrap; }
+.vc360-spks-row { gap: 8px; }
+}
+</style>
+
+<section class="vc360-section" id="proximo-evento">
+
+  <!-- ── Panel izquierdo: todo el contenido ── -->
+  <div class="vc360-left">
+    <div class="vc360-left-glow"></div>
+    <div class="vc360-left-inner reveal">
+
+      <span class="vc360-label">✦ Próximo Evento</span>
+      <h2 class="vc360-title">Ventas Creativas <em>360</em></h2>
+      <p class="vc360-sub">Conferencias · Panel · Bazar Creativo · Experiencias de Marcas</p>
+
+      <!-- Fecha -->
+      <div class="vc360-date">
+        <div class="vc360-date-num-col">
+          <span class="vc360-date-day">Sábado</span>
+          <strong class="vc360-date-big">4</strong>
+          <span class="vc360-date-mes">de Julio</span>
+        </div>
+        <div class="vc360-date-info">
+          <span>📍 Centro Media, Santo Domingo</span>
+          <span>⏰ 2:00 PM – 8:00 PM</span>
+          <span>🇩🇴 República Dominicana</span>
+        </div>
+      </div>
+
+      <!-- Countdown -->
+      <div class="vc360-countdown-wrap">
+        <span class="vc360-cd-lbl">Faltan para el evento</span>
+        <div class="countdown-grid" id="countdown">
+          <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-label">Días</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-label">Horas</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-label">Min</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-label">Seg</div></div>
+        </div>
+      </div>
+
+      <!-- Aprenderás -->
+      <span class="vc360-learn-lbl">Vas a aprender</span>
+      <ul class="vc360-learn">
+        <li>Cómo estructurar un negocio que sí vende</li>
+        <li>Cómo usar IA para vender más</li>
+        <li>Cómo lograr que tus clientes vuelvan</li>
+      </ul>
+
+      <!-- Features -->
+      <div class="vc360-feats">
+        <span class="vc360-feat">✨ Bazar en Vivo</span>
+        <span class="vc360-feat">🤝 Networking</span>
+        <span class="vc360-feat">🌟 Experiencias de Marcas</span>
+        <span class="vc360-feat">💄 Taller de Automaquillaje</span>
+      </div>
+
+      <!-- Speakers -->
+      <div class="vc360-spks-row">
+        <div class="vc360-spk-chip">
+          <div class="vc360-spk-av">J</div>
+          <span class="vc360-spk-name">Jessica Benavides</span>
+        </div>
+        <div class="vc360-spk-chip">
+          <div class="vc360-spk-av">B</div>
+          <span class="vc360-spk-name">Bianca Benavides</span>
+        </div>
+        <div class="vc360-spk-chip">
+          <div class="vc360-spk-av">M</div>
+          <span class="vc360-spk-name">Mayuri Hidalgo</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="vc360-btns">
+        <a href="https://wa.me/18495179040?text=QUIERO%20IR" target="_blank" class="btn btn--orange">¡Sí, lo quiero! ✦</a>
+      </div>
+
+      <!-- Info precio -->
+      <div class="vc360-img-card">
+        <span class="vc360-img-card-date">🗓 4 de Julio · Centro Media, Santo Domingo</span>
+        <span class="vc360-img-card-price">Desde RD$4,000</span>
+        <a href="https://wa.me/18495179040?text=QUIERO%20IR" target="_blank" class="vc360-img-card-cta">Quiero ir ✦</a>
+      </div>
+
+    </div>
   </div>
+
+  <!-- ── Panel derecho: imagen completa ── -->
+  <div class="vc360-right">
+    <img src="./img/Julioo.png" alt="Ventas Creativas 360 · Equipo ECP · 4 de Julio">
+    <div class="vc360-right-fade"></div>
+  </div>
+
 </section>
 
-<!-- ═══ PRÓXIMO EVENTO — ECP 2026 ════════════════════════════ -->
-<section class="next-hero" id="proximo-evento">
-  <div class="next-hero-glow"></div>
-  <div class="next-hero-inner">
-    <div class="next-hero-content reveal">
-      <span class="next-hero-vol">✦ Congreso ECP · Vol. 4.0</span>
-      <h2 class="next-hero-title">¿Estás list@ para descubrir las llaves de un negocio que prospera?</h2>
-      <p class="next-hero-sub">Vuelve el evento que transforma tu visión empresarial</p>
-      <div class="next-info-chips">
-        <div class="next-chip"><div class="next-chip-icon">📍</div><span>Salón Gobernación Provincial, San Cristóbal</span></div>
-        <div class="next-chip"><div class="next-chip-icon">📅</div><span>Sábado 28 de Marzo, 2026</span></div>
-        <div class="next-chip"><div class="next-chip-icon">🕒</div><span>2:00 PM – 8:00 PM</span></div>
-        <div class="next-chip"><div class="next-chip-icon">👥</div><span>+300 Empresarias · 12 Speakers</span></div>
-      </div>
-      <div class="next-hero-btns">
-        <a href="#tickets" class="btn btn--pink">Reservar mi lugar ✦</a>
-        <a href="#historia" class="btn btn--ghost">Ver Ediciones Pasadas</a>
-      </div>
-    </div>
-    <div class="next-countdown-card reveal d2">
-      <p class="next-countdown-title">Faltan para el congreso</p>
-      <div class="countdown-grid" id="countdown">
-        <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-label">Días</div></div>
-        <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-label">Horas</div></div>
-        <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-label">Min</div></div>
-        <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-label">Seg</div></div>
-      </div>
-      <div class="countdown-divider">
-        <span class="countdown-divider-line"></span>
-        <span class="countdown-divider-icon">✦</span>
-        <span class="countdown-divider-line"></span>
-      </div>
-      <div class="next-ticket-preview">
-        <p class="ntp-label">Boleta Creativa PRO</p>
-        <p class="ntp-price">RD$ 2,500</p>
-        <p class="ntp-sub">Precio de temporada disponible</p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ═══ SOCIAL PROOF ══════════════════════════════════════════ -->
-<div class="social-proof">
-  <div class="sp-inner reveal">
-    <p class="sp-stars">★★★★★</p>
-    <blockquote class="sp-quote">"ECP cambió la forma en que veo mi negocio. Salí con herramientas reales, conexiones genuinas y una claridad que no tenía antes. ¡Fue una inversión que se multiplicó!"</blockquote>
-    <p class="sp-author">— Asistente Edición Vol. 3 · San Cristóbal, RD</p>
-  </div>
-</div>
 
-<!-- ═══ URGENCY BAR ═══════════════════════════════════════════ -->
-<div class="urgency-bar">
-  <p>⚡ Cupos limitados — Reserva tu lugar antes del <strong>28 de Marzo, 2026</strong> · Precios de temporada disponibles ahora ✦</p>
-</div>
-
-<!-- ═══ TICKETS ══════════════════════════════════════════════ -->
-<section class="section section--cream" id="tickets">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="eyebrow reveal">Boletas · Sábado 28 de Marzo 2026</span>
-      <h2 class="section-title reveal d1">Escoge Tu Nivel</h2>
-      <p class="section-desc reveal d2">Cada boleta es una inversión en ti, en tu negocio y en la mujer que estás construyendo.</p>
-    </div>
-    <div class="ticket-urgency reveal">
-      📍 <strong>Salón Gobernación Provincial, San Cristóbal</strong> · 2:00 PM – 8:00 PM · +300 Empresarias
-    </div>
-    <div class="ticket-grid">
-
-      <div class="ticket reveal">
-        <span class="ticket-badge">Entrada Base</span>
-        <h3 class="ticket-name" style="color:var(--orange)">Creativa PRO</h3>
-        <div class="ticket-price"><sup>RD$</sup>2,500</div>
-        <ul class="ticket-features">
-          <li class="ticket-feature">Acceso a conferencias y paneles</li>
-          <li class="ticket-feature">Kit Creativo PRO</li>
-          <li class="ticket-feature">Libreta + Certificado digital</li>
-          <li class="ticket-feature">Regalos sorpresa</li>
-          <li class="ticket-feature">Experiencias de marcas patrocinadoras</li>
-          <li class="ticket-feature"><strong>1 Boleto sorteo: premio en efectivo + kit de patrocinadores</strong></li>
-        </ul>
-        <a href="https://buy.stripe.com/eVq7sK6UU4Audsz9Zx67S0s" class="btn btn--orange" style="width:100%;justify-content:center">Comprar PRO ✦</a>
-      </div>
-
-      <div class="ticket ticket--featured reveal d1">
-        <span class="ticket-badge">⭐ Más Popular</span>
-        <h3 class="ticket-name">Creativa VIP</h3>
-        <div class="ticket-price"><sup>RD$</sup>12,500</div>
-        <ul class="ticket-features">
-          <li class="ticket-feature">Todo lo del nivel PRO</li>
-          <li class="ticket-feature">Kit Creativo VIP Premium</li>
-          <li class="ticket-feature">Libro <em>"El Método MUSA"</em></li>
-          <li class="ticket-feature"><strong>Meet & Greet con invitados especiales</strong></li>
-          <li class="ticket-feature"><strong>2 Boletos sorteo + kit exclusivo de patrocinadores</strong></li>
-        </ul>
-        <a href="https://buy.stripe.com/dRmbJ07YY5Ey74b4Fd67S0t" class="btn btn--pink" style="width:100%;justify-content:center">Comprar VIP ✦</a>
-      </div>
-
-      <div class="ticket reveal d2">
-        <span class="ticket-badge" style="color:var(--aqua);background:rgba(0,172,193,0.1)">Exclusivo</span>
-        <h3 class="ticket-name" style="color:var(--aqua)">Special Guest</h3>
-        <div class="ticket-price" style="color:var(--aqua)"><sup>RD$</sup>25,000</div>
-        <ul class="ticket-features">
-          <li class="ticket-feature">Todo lo del nivel VIP</li>
-          <li class="ticket-feature">Kit Creativo Special Guest exclusivo</li>
-          <li class="ticket-feature"><strong>3 Boletos para sorteo</strong></li>
-          <li class="ticket-feature"><strong>Logo en pantalla del evento</strong></li>
-          <li class="ticket-feature"><strong>Logo en backpanel de fotos</strong></li>
-          <li class="ticket-feature"><strong>Derecho a incluir productos en kits</strong></li>
-        </ul>
-        <a href="https://buy.stripe.com/eVqcN4enm7MG88fgnV67S0u" class="btn btn--aqua" style="width:100%;justify-content:center">Consultar ✦</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- ═══ PATROCINADORES ════════════════════════════════════════ -->
-<section class="section section--white" id="patrocinadores">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="eyebrow reveal">Para marcas y empresas</span>
-      <h2 class="section-title reveal d1">Paquetes para Aliados</h2>
-      <p class="section-desc reveal d2">Posiciona tu marca ante una audiencia de empresarias creativas comprometidas con el crecimiento.</p>
-    </div>
-    <div class="sponsor-grid">
-
-      <div class="sponsor-card sp-pro reveal">
-        <span class="sponsor-tier-badge">PRO</span>
-        <div class="sponsor-price">RD$ 75,000</div>
-        <ul class="sponsor-feat-list">
-          <li>Logo en publicidad de redes sociales</li>
-          <li>Logo en backpanel de fotos del evento</li>
-          <li>1 mención durante el evento</li>
-          <li>Derecho a espacio 1×1m en ExpoCreativa</li>
-          <li>Video en cobertura del evento</li>
-          <li>1 entrada Creativa PRO</li>
-          <li>20% de descuento en entradas</li>
-        </ul>
-        <a href="https://wa.me/18495179040" class="btn btn--outline">Consultar</a>
-      </div>
-
-      <div class="sponsor-card sp-vip reveal d1">
-        <span class="sponsor-tier-badge">VIP</span>
-        <div class="sponsor-price">RD$ 150,000</div>
-        <ul class="sponsor-feat-list">
-          <li>Logo en pantalla del evento</li>
-          <li>Logo en publicidad de redes sociales</li>
-          <li>Logo en backpanel de fotos</li>
-          <li>2 menciones durante el evento</li>
-          <li>Espacio 1.5×1.5m en ExpoCreativa</li>
-          <li>Video en cobertura del evento</li>
-          <li>2 contenidos UGC</li>
-          <li>2 entradas PRO + 2 Gala</li>
-          <li>20% de descuento en entradas</li>
-        </ul>
-        <a href="https://wa.me/18495179040" class="btn btn--pink">Consultar</a>
-      </div>
-
-      <div class="sponsor-card sp-premium reveal d2">
-        <span class="sponsor-tier-badge">PREMIUM</span>
-        <div class="sponsor-price">RD$ 250,000</div>
-        <ul class="sponsor-feat-list">
-          <li>Logo en pantalla del evento</li>
-          <li>Logo en toda la publicidad</li>
-          <li><strong>Video del evento con tu marca (15 seg)</strong></li>
-          <li>Logo en backpanel de fotos</li>
-          <li>3 menciones durante el evento</li>
-          <li>Espacio 1.5×1.5m en ExpoCreativa</li>
-          <li>Derecho a degustaciones y productos</li>
-          <li>2 contenidos UGC</li>
-          <li>2 entradas Creativa VIP</li>
-          <li>20% de descuento en entradas</li>
-        </ul>
-        <a href="https://wa.me/18495179040" class="btn btn--aqua">Consultar</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ VÍAS DE PAGO ══════════════════════════════════════════ -->
-<section class="section section--cream2" id="pagos">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="eyebrow reveal">Formas de pago</span>
-      <h2 class="section-title reveal d1">Vías de Pago</h2>
-      <p class="section-desc reveal d2">Elige el método que más te convenga para reservar tu lugar en ECP 2026.</p>
-    </div>
-
-    <div class="payment-methods reveal">
-      <div class="pm-card"><div class="pm-icon">🏦</div><h3>Transferencia a cuenta</h3></div>
-      <div class="pm-card"><div class="pm-icon">💳</div><h3>Link para pago con tarjeta</h3></div>
-      <div class="pm-card"><div class="pm-icon">📝</div><h3>Cheque</h3></div>
-      <div class="pm-card"><div class="pm-icon">💵</div><h3>Efectivo</h3></div>
-    </div>
-
-    <div class="bank-grid reveal d1">
-      <div class="bank-card">
-        <div class="bank-header">
-          <div class="bank-logo-box"><img src="popular.png" alt="Banco Popular"></div>
-          <div><div class="bank-name-label">Banco Popular</div><div class="bank-type">Cta. Ahorro</div></div>
-        </div>
-        <div class="bank-holder">Mayuri Hidalgo</div>
-        <div class="bank-number">679113647</div>
-      </div>
-      <div class="bank-card">
-        <div class="bank-header">
-          <div class="bank-logo-box"><img src="banreservas.svg" alt="Banco de Reservas"></div>
-          <div><div class="bank-name-label">Banco Reservas</div><div class="bank-type">Cta. Ahorro</div></div>
-        </div>
-        <div class="bank-holder">Mayuri Hidalgo</div>
-        <div class="bank-number">5100101679</div>
-      </div>
-      <div class="bank-card">
-        <div class="bank-header">
-          <div class="bank-logo-box"><img src="asociacion.png" alt="Asociación Popular"></div>
-          <div><div class="bank-name-label">Asociación Popular</div><div class="bank-type">Cta. Ahorro</div></div>
-        </div>
-        <div class="bank-holder">Mayuri Hidalgo</div>
-        <div class="bank-number">1024839893</div>
-      </div>
-    </div>
-
-    <div class="cedula-note reveal">Cédula: <strong>001-1395020-8</strong></div>
-
-    <div class="payment-important reveal d1">
-      <span class="pi-label">⚠ Importante</span>
-      <p style="font-size:0.92rem;color:var(--text);line-height:1.7">Coloca una nota en el depósito con tu nombre completo, tipo de evento y modalidad de boleta o patrocinio.</p>
-      <div style="margin-top:12px;background:#fff;border-radius:12px;padding:12px 18px;font-size:0.83rem;color:var(--muted);border:1px solid var(--border);display:inline-block">
-        Ej: <strong style="color:var(--text)">Patricia León, ECP, Boleta VIP</strong>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ LOCATION ══════════════════════════════════════════════ -->
 <section class="location-section">
   <div class="location-inner reveal">
-    <span class="eyebrow eyebrow--pink" style="color:rgba(255,255,255,0.4);text-align:center;display:block">¿Dónde será?</span>
-    <h2 class="h-display" style="font-size:clamp(2rem,5vw,3.5rem);color:#fff;margin-bottom:10px;text-align:center">El Lugar del Encuentro</h2>
+
+    <span class="eyebrow eyebrow--pink" style="color:rgba(255,255,255,0.4);text-align:center;display:block">
+      ¿Dónde será?
+    </span>
+
+    <h2 class="h-display" style="font-size:clamp(2rem,5vw,3.5rem);color:#fff;margin-bottom:10px;text-align:center">
+      El Lugar del Encuentro
+    </h2>
+
     <div class="location-map-frame">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.123456789!2d-70.10506!3d18.41606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDI0JzU4LjIiTiA3MMKwMDYnMTguMiJX!5e0!3m2!1ses!2sdo!4v1000000000000!5m2!1ses!2sdo"
-        width="100%" height="320" style="border:0" allowfullscreen loading="lazy">
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d562.4972512034386!2d-69.95784560208904!3d18.48296266405519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf8b006e98d5bb%3A0xe432d24c5858ed8!2sCentro%20Media!5e0!3m2!1ses-419!2sdo!4v1779213653970!5m2!1ses-419!2sdo"
+        width="100%"
+        height="320"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
+
     <div class="location-chips">
-      <div class="location-chip">📍 Salón Gobernación Provincial, San Cristóbal</div>
-      <div class="location-chip">📅 28 de Marzo, 2026</div>
+      <div class="location-chip">📍 Centro Media, Santo Domingo</div>
+      <div class="location-chip">📅 4 de Julio, 2026</div>
       <div class="location-chip">🕒 2:00 PM – 8:00 PM</div>
     </div>
-    <a href="https://maps.app.goo.gl/WGC2apH3hDDSLrex5" target="_blank" class="btn btn--ghost">Cómo llegar 🗺️</a>
+
+    <a
+      href="https://maps.app.goo.gl/Wy4b59hLfb9EwXXY6"
+      target="_blank"
+      class="btn btn--ghost">
+      Cómo llegar 🗺️
+    </a>
+
   </div>
+</section>
+<section class="reels-section" id="historia">
+    <div class="section-header centered reveal">
+        <span class="section-label">Momentos que inspiran</span>
+        <h2 class="section-title reveal d1" style="color:var(--pink)">Revive Momentos Memorables de ECP</h2>
+        <p class="section-desc reveal d2">Lo mejor de nuestras ediciones anteriores — Más que un evento, somos una comunidad que crece.</p>
+    </div>
+    <div class="reels-grid">
+        <div class="reel-card reveal">
+            <div class="reel-header"><span class="reel-tag">Congreso 2026</span><span class="reel-year">2026</span></div>
+            <h3 class="reel-title">ECP 2026 · Ventas Creativas 360</h3>
+            <div class="reel-embed"><iframe src="https://www.instagram.com/p/DWrEOnEOvLo/embed" loading="lazy" scrolling="no"></iframe></div>
+        </div>
+        <div class="reel-card reveal reveal-delay-1">
+            <div class="reel-header"><span class="reel-tag">Inclusión</span><span class="reel-year">2026</span></div>
+            <h3 class="reel-title">Aliados del éxito: Este año los hombres nos acompañan</h3>
+            <div class="reel-embed"><iframe src="https://www.instagram.com/reel/DVJXx7oDqgN/embed" loading="lazy" scrolling="no"></iframe></div>
+        </div>
+        <div class="reel-card reveal reveal-delay-2">
+            <div class="reel-header"><span class="reel-tag">Preparativos</span><span class="reel-year">2025</span></div>
+            <h3 class="reel-title">Lo que viene en camino</h3>
+            <div class="reel-embed"><iframe src="https://www.instagram.com/reel/DGqVE6bp4wa/embed" loading="lazy" scrolling="no"></iframe></div>
+        </div>
+        <div class="reel-card reveal reveal-delay-3">
+            <div class="reel-header"><span class="reel-tag">Highlights</span><span class="reel-year">2024</span></div>
+            <h3 class="reel-title">Experiencias inolvidables</h3>
+            <div class="reel-embed"><iframe src="https://www.instagram.com/reel/C25pJIxJF95/embed" loading="lazy" scrolling="no"></iframe></div>
+        </div>
+        <div class="reel-card reveal reveal-delay-3">
+            <div class="reel-header"><span class="reel-tag">Comunidad</span><span class="reel-year">2023</span></div>
+            <h3 class="reel-title">Conexión genuina</h3>
+            <div class="reel-embed"><iframe src="https://www.instagram.com/reel/Cnc8s1HIQS8/embed" loading="lazy" scrolling="no"></iframe></div>
+        </div>
+    </div>
 </section>
 
 <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
@@ -1406,7 +1366,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 /* ─── COUNTDOWN ──────────────────────────────────── */
-const eventDate = new Date('2026-03-28T14:00:00');
+const eventDate = new Date('2026-07-04T14:00:00');
 function updateCountdown() {
   const now = new Date();
   const diff = eventDate - now;
@@ -1428,6 +1388,7 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
 
 /* ─── ACTIVE NAV ON SCROLL ───────────────────────── */
 const sections = document.querySelectorAll('section[id],header[id]');
